@@ -603,6 +603,7 @@ components:
 
     # schema per l'utente
     username:
+      
       title: username
       description: This object is the user.
       type: object
@@ -610,6 +611,7 @@ components:
       # le proprietà dell'utente
       properties:
         username:
+          description: Unique username.
           type: string
           minLength: 5
           maxLength: 16
@@ -620,6 +622,7 @@ components:
 
         # id dell'utente
         userId:
+          description: Unique user identifier.
           type: string
           example: $1234
           readOnly: true
@@ -662,6 +665,7 @@ components:
       # le proprietà del profilo
       properties:
         username:
+          description: Unique username.
           type: string
           minLength: 5
           maxLength: 16
@@ -672,18 +676,21 @@ components:
 
         # id dell'utente
         userId:
+          description: Unique user identifier.
           type: string
           example: $1234
           readOnly: true
         
         # url della stream dell'utente
         userstream:
+          description: Unique user stream.
           type: string
           example: "http://localhost:8080/session/Mario_Rossi_01/stream"
           readOnly: true
         
         # numero di followers dell'utente
         followersNumber:
+          description: user followers number.
           type: integer
           minimum: 0
           maximum: 9999
@@ -692,6 +699,7 @@ components:
 
         # numero di following dell'utente
         followingNumber:
+          description: user following number.
           type: integer
           minimum: 0
           maximum: 999999999
@@ -700,6 +708,7 @@ components:
         
         # numero di foto dell'utente
         photoNumber:
+          description: user photo number.
           type: integer
           minimum: 0
           maximum: 999999999
@@ -708,6 +717,7 @@ components:
 
         # numero di utenti bannati dall'utente
         banned:
+          description: user banned number.
           type: integer
           minimum: 0
           maximum: 999999999
@@ -796,6 +806,7 @@ components:
           readOnly: true
 
         photos:
+          description: The list of photos
           type: array
           items:
             $ref: "#/components/schemas/photo"
@@ -808,6 +819,7 @@ components:
       title: photosList
       description: Photos schema.
       type: object
+
       properties:
         requestId:
           description: Unique user identifier.
@@ -816,6 +828,7 @@ components:
           example: "#U1234" 
           minLength: 3
           maxLength: 16
+
         identifier:
           description: Unique user identifier.
           type: string
@@ -823,6 +836,7 @@ components:
           example: "#U1234" 
           minLength: 3
           maxLength: 16
+          
         photos: 
           description: list of objects (each object is a photo)
           type: array
@@ -830,6 +844,7 @@ components:
           maxItems: 99999
           items:
             type: object
+
             properties:
               Id: 
                 description:  Unique photo identifier.
@@ -838,6 +853,7 @@ components:
                 example: "#P1234"
                 minLength: 3
                 maxLength: 16
+
               userId:
                 description: Unique user identifier.
                 type: string
@@ -845,12 +861,14 @@ components:
                 example: "#U5678" 
                 minLength: 3
                 maxLength: 16
+
               file: 
                 description: file
                 type: string
                 format: binary
                 minLength: 3
                 maxLength: 16
+
               date:
                 description: Data
                 type: string
@@ -858,18 +876,21 @@ components:
                 example: "2022-11-02T09:00:00Z"
                 minLength: 3
                 maxLength: 9999
+
               likeCount:
                 description: photo likes count.
                 type: integer
                 example: 0
                 minimum: 0
                 maximum: 9999
+
               commentCount:
                 description: photo comments count.
                 type: integer
                 example: 0
                 minimum: 0
                 maximum: 9999
+
               likeStatus:
                 description: photo like status.
                 type: boolean
@@ -878,9 +899,10 @@ components:
     # schema per il follow
     follow:
       title: follow 
-      description: Follow.
+      description: Follow schema
       type: object
       properties:
+
         followId:
           description: followID 
           type: string
@@ -888,6 +910,7 @@ components:
           example: "$F1234"
           minLength: 3
           maxLength: 16
+
         followedId:
           description: Unique user identifier.
           type: string
@@ -895,6 +918,7 @@ components:
           example: "$U4321"
           minLength: 3
           maxLength: 16
+
         userId:
           description: Unique user identifier.
           type: string
@@ -911,7 +935,9 @@ components:
 
       # le proprietà del login
       properties:
+      
         username:
+          description: Unique username.
           type: string
           minLength: 5
           maxLength: 16
