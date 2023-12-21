@@ -126,7 +126,7 @@ paths:
       summary: Posts a photo
       description: |-
         Posts a photo.
-      operationId: setMyPhoto
+      operationId: postMyPhoto
       requestBody:
         description: Insert here your photo
         content:
@@ -238,6 +238,8 @@ paths:
 
   /users/{profile}/banned:
     # endpoint per ottenere la lista degli utenti bannati
+    parameters:
+    - $ref: "#/components/parameters/profile"
     get:
       security:
         - bearerAuth: []
@@ -408,7 +410,7 @@ paths:
       summary: Removes a like from a photo
       description: |-
         Unbans a user.
-      operationId: unbanUser
+      operationId: unLikePhoto
       requestBody:
         description: Removes a like from a photo
         content:
@@ -600,8 +602,8 @@ components:
   schemas:
 
     # schema per l'utente
-    user:
-      title: user
+    username:
+      title: username
       description: This object is the user.
       type: object
 
