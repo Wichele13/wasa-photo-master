@@ -465,12 +465,7 @@ paths:
         required: true
         schema:
           type: integer
-      - name: commentId
-        in: path
-        description: Identifies the comment
-        required: true
-        schema:
-          type: integer
+
         
     # endpoint per commentare una foto
     put:
@@ -498,6 +493,12 @@ paths:
       - name: id
         in: path
         description: Identifies the photo get or delete
+        required: true
+        schema:
+          type: integer
+      - name: commentId
+        in: path
+        description: Identifies the comment
         required: true
         schema:
           type: integer
