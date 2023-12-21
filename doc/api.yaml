@@ -541,6 +541,10 @@ paths:
 ################################################################
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
   parameters:
     profile:
       name: profile
