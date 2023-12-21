@@ -626,6 +626,8 @@ components:
           description: Unique user identifier.
           type: string
           pattern: '^.*?$'
+          minLength: 3
+          maxLength: 10
           example: $1234
           readOnly: true
     
@@ -641,11 +643,15 @@ components:
           description: Unique like identifier.
           type: string
           pattern: '^.*?$'
+          minLength: 2
+          maxLength: 10
           example: $L1234
           readOnly: true
         userId:
           description: Unique user identifier.
           type: string
+          minLength: 3
+          maxLength: 10
           pattern: '^.*?$'
           example: $1234
           readOnly: true
@@ -658,6 +664,8 @@ components:
         photoOwner:
           description: Unique user identifier.
           type: string
+          minLength: 3
+          maxLength: 10
           pattern: '^.*?$'
           example: $1234
           readOnly: true
@@ -685,6 +693,8 @@ components:
         userId:
           description: Unique user identifier.
           type: string
+          minLength: 3
+          maxLength: 10
           pattern: '^.*?$'
           example: $1234
           readOnly: true
@@ -693,6 +703,8 @@ components:
         userstream:
           description: Unique user stream.
           type: string
+          minLength: 3
+          maxLength: 200
           example: "http://localhost:8080/session/Mario_Rossi_01/stream"
           readOnly: true
         
@@ -752,12 +764,16 @@ components:
         photo:
           description: The photo to upload
           type: string
+          minLength: 3
+          maxLength: 200
           format: byte
         
         # id dell'utente che ha caricato la foto
         userId:
           description: Identifies the user
           type: string
+          minLength: 3
+          maxLength: 10
           example: $1234
           readOnly: true
         
@@ -772,6 +788,8 @@ components:
         description:
           description: The photo description
           type: string
+          minLength: 0
+          maxLength: 200
           pattern: '^.*?$'
           example: "This is a photo"
 
@@ -811,6 +829,8 @@ components:
         userId:
           description: Identifies the user
           type: string
+          minLength: 3
+          maxLength: 10
           example: $1234
           readOnly: true
 
