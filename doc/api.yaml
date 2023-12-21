@@ -496,7 +496,7 @@ paths:
         required: true
         schema:
           type: integer
-      - name: commentId
+      - name: commentsId
         in: path
         description: Identifies the comment
         required: true
