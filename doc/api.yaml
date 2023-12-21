@@ -436,19 +436,26 @@ paths:
 
 ################################################################
 # COMMENTI 
-  ###############CORREGGERE##################
 
-  /users/{profile}/photos/{id}/comments/:
+
+
+  /users/{profile}/photos/{id}/comments/{commentsId}:
     parameters:
       - $ref: "#/components/parameters/profile"
       - name: id
         in: path
-        description: Identifies the photo to comment
+        description: Identifies the photo get or delete
         required: true
         schema:
           type: integer
-
-        
+      - name: commentsId
+        in: path
+        description: Identifies the comment
+        required: true
+        schema:
+          type: integer
+    
+            
     # endpoint per commentare una foto
     put:
       security:
@@ -472,23 +479,6 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
         "400": { $ref: "#/components/responses/BadRequestError" }
-
-  /users/{profile}/photos/{id}/comments/{commentsId}:
-    parameters:
-      - $ref: "#/components/parameters/profile"
-      - name: id
-        in: path
-        description: Identifies the photo get or delete
-        required: true
-        schema:
-          type: integer
-      - name: commentsId
-        in: path
-        description: Identifies the comment
-        required: true
-        schema:
-          type: integer
-    
     # endpoint per ottenere la lista dei commenti di una foto
     get:
       security:
