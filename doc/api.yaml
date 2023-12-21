@@ -613,6 +613,7 @@ components:
         username:
           description: Unique username.
           type: string
+          pattern: '^.*?$'
           minLength: 5
           maxLength: 16
           required:
@@ -624,6 +625,7 @@ components:
         userId:
           description: Unique user identifier.
           type: string
+          pattern: '^.*?$'
           example: $1234
           readOnly: true
     
@@ -638,21 +640,25 @@ components:
         likeid:
           description: Unique like identifier.
           type: string
+          pattern: '^.*?$'
           example: $L1234
           readOnly: true
         userId:
           description: Unique user identifier.
           type: string
+          pattern: '^.*?$'
           example: $1234
           readOnly: true
         photoId:
           description: Unique photo identifier.
           type: string
           example: $P1234
+          pattern: '^.*?$'
           readOnly: true
         photoOwner:
           description: Unique user identifier.
           type: string
+          pattern: '^.*?$'
           example: $1234
           readOnly: true
 
@@ -669,6 +675,7 @@ components:
           type: string
           minLength: 5
           maxLength: 16
+          pattern: '^.*?$'
           required:
             - username
           example: Mario_Rossi_01
@@ -678,6 +685,7 @@ components:
         userId:
           description: Unique user identifier.
           type: string
+          pattern: '^.*?$'
           example: $1234
           readOnly: true
         
@@ -764,6 +772,7 @@ components:
         description:
           description: The photo description
           type: string
+          pattern: '^.*?$'
           example: "This is a photo"
 
         # numero di like della foto  
@@ -870,9 +879,10 @@ components:
                 maxLength: 16
 
               date:
-                description: Data
+                description: Data-orario di caricamento della foto.
                 type: string
                 format: date-time
+                pattern: '^.*?$'
                 example: "2022-11-02T09:00:00Z"
                 minLength: 3
                 maxLength: 9999
@@ -891,6 +901,7 @@ components:
                 minimum: 0
                 maximum: 9999
 
+
               likeStatus:
                 description: photo like status.
                 type: boolean
@@ -907,7 +918,7 @@ components:
           description: followID 
           type: string
           pattern: '^.*?$'
-          example: "$F1234"
+          example: "$U1234"
           minLength: 3
           maxLength: 16
 
@@ -939,6 +950,7 @@ components:
         username:
           description: Unique username.
           type: string
+          pattern: '^.*?$'
           minLength: 5
           maxLength: 16
           required:
@@ -1050,6 +1062,8 @@ components:
         content:
           description: content of the comment
           type: string
+          minLength: 1
+          maxLength: 200
           example: Hi, I'm a comment!
           readOnly: true
 
