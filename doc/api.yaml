@@ -739,7 +739,7 @@ components:
         # id della foto
         id:
           description: Identifies the photo
-          type: integer
+          type: string
           example: photo.jpg
           readOnly: true
           
