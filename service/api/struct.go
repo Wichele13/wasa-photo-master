@@ -27,3 +27,9 @@ type PhotoStream struct {
 	LikeCount    int    `json:"likeCount"`
 	CommentCount int    `json:"commentCount"`
 }
+
+type Follow struct {
+	Id       string `json:"id"`
+	UserId   string `json:"userId"`
+	FollowId string `json:"followId"`
+}
