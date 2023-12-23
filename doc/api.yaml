@@ -796,7 +796,7 @@ components:
     # schema per la stream di foto
     photostream:
       title: photoStream
-      description: This object is the list of photos.
+      description: This object is the stream of photos.
       type: object
 
       # le proprietà della lista di foto
