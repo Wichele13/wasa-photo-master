@@ -2,8 +2,8 @@ package api
 
 // struct for the Profile
 type Profile struct {
-	Id             string `json:"userId"`
-	requesterId    string `json:"requesterId"`
+	Id             uint64 `json:"userId"`
+	requesterId    uint64 `json:"requesterId"`
 	Username       string `json:"username"`
 	FollowerCount  int    `json:"followerCount"`
 	FollowingCount int    `json:"followingCount"`
@@ -29,7 +29,20 @@ type PhotoStream struct {
 }
 
 type Follow struct {
-	Id       string `json:"id"`
-	UserId   string `json:"userId"`
-	FollowId string `json:"followId"`
+	Id       uint64 `json:"id"`
+	UserId   uint64 `json:"userId"`
+	FollowId uint64 `json:"followId"`
+}
+
+type Like struct {
+	LikeId     uint64 `json:"id"`
+	UserId     uint64 `json:"userId"`
+	PhotoId    uint64 `json:"photoId"`
+	PhotoOwner string `json:"likeType"`
+}
+
+type Ban struct {
+	RequestingBanId uint64 `json:"id"`
+	UserId          uint64 `json:"userId"`
+	BanId           uint64 `json:"banId"`
 }
