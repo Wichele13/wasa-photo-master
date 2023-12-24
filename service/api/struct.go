@@ -46,3 +46,20 @@ type Ban struct {
 	UserId          uint64 `json:"userId"`
 	BanId           uint64 `json:"banId"`
 }
+
+type Photo struct {
+	Id           uint64 `json:"id"`
+	UserId       uint64 `json:"userId"`
+	File         []byte `json:"file"`
+	Date         string `json:"date"`
+	LikeCount    int    `json:"like"`
+	CommentCount int    `json:"comment"`
+}
+
+type Comment struct {
+	Id         uint64 `json:"id"`
+	UserId     uint64 `json:"userId"`
+	PhotoId    uint64 `json:"photoId"`
+	PhotoOwner string `json:"photoOwner"`
+	Comment    string `json:"comment"`
+}
