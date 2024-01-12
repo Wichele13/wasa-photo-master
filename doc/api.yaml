@@ -187,6 +187,7 @@ paths:
       required: true
       schema:
         type: string
+        pattern: '^.*?$'
         minLength: 3
         maxLength: 10
 
@@ -265,6 +266,7 @@ paths:
       required: true
       schema:
         type: string
+        pattern: '^.*?$'
         minLength: 3
         maxLength: 10
     
@@ -365,6 +367,7 @@ paths:
         required: true
         schema:
           type: string
+          pattern: '^.*?$'
 
     # endpoint per mettere like ad una foto      
     put:
@@ -533,6 +536,7 @@ components:
       required: true
       schema:
         type: string
+        pattern: '^.*?$'
   
   responses:
 
@@ -680,6 +684,7 @@ components:
         userstream:
           description: Unique user stream.
           type: string
+          pattern: '^.*?$'
           minLength: 3
           maxLength: 200
           example: "http://localhost:8080/session/Mario_Rossi_01/stream"
@@ -734,6 +739,7 @@ components:
         id:
           description: Identifies the photo
           type: string
+          pattern: '^.*?$'
           example: photo.jpg
           readOnly: true
           
@@ -741,6 +747,7 @@ components:
         photo:
           description: The photo to upload
           type: string
+          pattern: '^.*?$'
           minLength: 3
           maxLength: 200
           format: byte
@@ -749,6 +756,7 @@ components:
         userId:
           description: Identifies the user
           type: string
+          pattern: '^.*?$'
           minLength: 3
           maxLength: 10
           example: $1234
@@ -788,6 +796,7 @@ components:
         date:
           description: The photo upload date
           type: string
+          pattern: '^.*?$'
           minLength: 4
           maxLength: 11
           example: "13-10-2000"
@@ -806,6 +815,7 @@ components:
         userId:
           description: Identifies the user
           type: string
+          pattern: '^.*?$'
           minLength: 3
           maxLength: 10
           example: $1234
@@ -871,6 +881,7 @@ components:
               file: 
                 description: file
                 type: string
+                pattern: '^.*?$'
                 format: binary
                 minLength: 3
                 maxLength: 16
@@ -1059,6 +1070,7 @@ components:
         content:
           description: content of the comment
           type: string
+          pattern: '^.*?$'
           minLength: 1
           maxLength: 200
           example: Hi, I'm a comment!
