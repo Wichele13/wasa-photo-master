@@ -728,15 +728,6 @@ components:
           type: boolean
           example: true
           readOnly: true
-
-        # numero di utenti bannati dall'utente
-        banned:
-          description: user banned number.
-          type: integer
-          minimum: 0
-          maximum: 999999999
-          example: 0
-          readOnly: true
         
         requestId:
           description: Unique user identifier.
