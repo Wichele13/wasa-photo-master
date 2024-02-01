@@ -1,8 +1,10 @@
 package api
 
+/*
 import (
 	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/database"
 )
+*/
 
 // struct for the Profile
 type Profile struct {
@@ -75,7 +77,9 @@ type Comment struct {
 	Comment    string `json:"comment"`
 }
 
+/*
 func (u *User) FromDatabase(user database.User) {
 	u.Id = user.Id
 	u.Username = user.Username
 }
+*/
