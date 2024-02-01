@@ -701,7 +701,7 @@ components:
 
         # numero di following dell'utente
         followingNumber:
-          description: user following number.
+          description: user following count
           type: integer
           minimum: 0
           maximum: 999999999
@@ -718,13 +718,13 @@ components:
           readOnly: true
         
         followStatus:
-          description: Identifies if the user is followed
+          description: Shows if the user is followed
           type: boolean
           example: true
           readOnly: true
       
         banStatus:
-          description: Identifies if the user is banned
+          description: Shows if the user is banned
           type: boolean
           example: true
           readOnly: true
