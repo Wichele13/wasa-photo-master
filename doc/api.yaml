@@ -583,9 +583,9 @@ components:
   schemas:
 
     # schema per l'utente
-    username:
+    user:
       
-      title: username
+      title: user
       description: This object is the user.
       type: object
 
@@ -716,6 +716,18 @@ components:
           maximum: 999999999
           example: 0
           readOnly: true
+        
+        followStatus:
+          description: Identifies if the user is followed
+          type: boolean
+          example: true
+          readOnly: true
+      
+        banStatus:
+          description: Identifies if the user is banned
+          type: boolean
+          example: true
+          readOnly: true
 
         # numero di utenti bannati dall'utente
         banned:
@@ -725,6 +737,14 @@ components:
           maximum: 999999999
           example: 0
           readOnly: true
+        
+        requestId:
+          description: Unique user identifier.
+          type: string
+          pattern: '^.*?$'
+          example: "$1234"
+          minLength: 3
+          maxLength: 16
           
     # schema per la foto
     photo:
