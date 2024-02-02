@@ -142,8 +142,55 @@ type Comment struct {
 
 // AppDatabase is the high level interface for the DB
 type AppDatabase interface {
-	GetName() (string, error)
-	SetName(name string) error
+	// User
+	CreateUser(User) (User, error)
+	SetUsername(User, string) (User, error)
+	GetUserId(string) (User, error)
+	CheckUserById(User) (User, error)
+	CheckUserByUsername(User) (User, error)
+	CheckUser(User) (User, error)
+	GetMyStream(User) ([]PhotoStream, error)
+
+	// Follow
+	SetFollow(Follow) (Follow, error)
+	RemoveFollow(uint64, uint64, uint64) error
+	GetFollowingId(user1 uint64, user2 uint64) (Follow, error)
+	GetFollowers(User, uint64) (Follow, error)
+	GetFollowersCount(uint64) (int, error)
+	GetFollowingsCount(uint64) (int, error)
+	GetFollowStatus(uint64, uint64) (bool, error)
+
+	// Ban
+	SetBan(Ban) (Ban, error)
+	RemoveBan(Ban) error
+	GetBans(User, uint64) (Ban, error)
+	GetBanById(Ban) (Ban, error)
+	UpdateBanStatus(int, uint64, uint64) error
+	GetBanStatus(uint64, uint64) (bool, error)
+	CheckIfBanned(uint64, uint64) (bool, error)
+
+	// Photo
+	UploadPhoto(Photo) (Photo, error)
+	RemovePhoto(uint64) error
+	GetPhotos(User, uint64) ([]Photo, error)
+	GetPhotosCount(uint64) (int, error)
+	CheckPhotoOwner(Photo) (Photo, error)
+
+	// Like
+	SetLike(Like) (Like, error)
+	RemoveLike(Like) error
+	RemoveLikes(uint64, uint64) error
+	GetLike(uint64, uint64) (Like, error)
+	GetLikeById(Like) (Like, error)
+	GetLikesCount(uint64) (int, error)
+
+	// Comment
+	SetComment(Comment) (Comment, error)
+	RemoveComment(Comment) error
+	GetComments(photoId uint64) ([]Comment, error)
+	GetCommentsCount(uint64) (int, error)
+	GetCommentById(Comment) (Comment, error)
+	RemoveComments(uint64, uint64) error
 
 	Ping() error
 }
