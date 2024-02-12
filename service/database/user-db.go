@@ -88,22 +88,42 @@ func (db *appdbimpl) CheckUser(u User) (User, error) {
 
 // GetMyStream gets the photo stream of a user
 func (db *appdbimpl) GetMyStream(u User) ([]PhotoStream, error) {
-	rows, err := db.c.Query(`SELECT id, userId, file, date, likeCount, commentCount FROM photostream WHERE userId = ?`, u.Id)
+	var ret []PhotoStream
+	rows, err := db.c.Query(`SELECT Id, userId, photo, date FROM photos WHERE userId IN (SELECT followerId FROM followers WHERE userId=? AND followerId NOT IN (SELECT userId FROM bans WHERE bannedId=?))`, u.Id, u.Id)
 	if err != nil {
-		return nil, err
+		return ret, ErrUserDoesNotExist
 	}
-	defer rows.Close()
-
-	var photoStreams []PhotoStream
+	defer func() { _ = rows.Close() }()
 	for rows.Next() {
-		var photoStream PhotoStream
-		if err := rows.Scan(&photoStream.Id, &photoStream.UserId, &photoStream.File, &photoStream.Date, &photoStream.LikeCount, &photoStream.CommentCount); err != nil {
+		var b PhotoStream
+		err = rows.Scan(&b.Id, &b.UserId, &b.File, &b.Date)
+		if err != nil {
 			return nil, err
 		}
-		photoStreams = append(photoStreams, photoStream)
+		if err := db.c.QueryRow(`SELECT username FROM users WHERE id = ?`, b.UserId).Scan(&b.Username); err != nil {
+			if err == sql.ErrNoRows {
+				return nil, err
+			}
+		}
+		if err := db.c.QueryRow(`SELECT COUNT(*) FROM likes WHERE photoId = ?`, b.Id).Scan(&b.LikeCount); err != nil {
+			if err == sql.ErrNoRows {
+				return nil, err
+			}
+		}
+		if err := db.c.QueryRow(`SELECT COUNT(*) FROM comments WHERE photoId = ?`, b.Id).Scan(&b.CommentCount); err != nil {
+			if err == sql.ErrNoRows {
+				return nil, err
+			}
+		}
+		if err := db.c.QueryRow(`SELECT EXISTS(SELECT 1 FROM likes WHERE userId = ? AND photoId = ?)`, u.Id, b.Id).Scan(&b.LikeStatus); err != nil {
+			if err == sql.ErrNoRows {
+				return nil, err
+			}
+		}
+		ret = append(ret, b)
 	}
-	if err := rows.Err(); err != nil {
+	if rows.Err() != nil {
 		return nil, err
 	}
-	return photoStreams, nil
+	return ret, nil
 }
