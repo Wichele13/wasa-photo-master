@@ -147,7 +147,7 @@ type AppDatabase interface {
 	CheckPhoto(Photo) (Photo, error)
 
 	// Like
-	SetLike(Like) (Like, error)
+	AddLike(Like) (Like, error)
 	RemoveLike(Like) error
 	RemoveLikes(uint64, uint64) error
 	GetLike(uint64, uint64) (Like, error)
