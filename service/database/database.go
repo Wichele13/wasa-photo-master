@@ -131,7 +131,7 @@ type AppDatabase interface {
 	GetFollowStatus(uint64, uint64) (bool, error)
 
 	// Ban
-	SetBan(Ban) (Ban, error)
+	AddBan(Ban) (Ban, error)
 	RemoveBan(Ban) error
 	GetBans(User, uint64) (Ban, error)
 	GetBanById(Ban) (Ban, error)
@@ -144,7 +144,7 @@ type AppDatabase interface {
 	RemovePhoto(uint64) error
 	GetPhotos(User, uint64) ([]Photo, error)
 	GetPhotosCount(uint64) (int, error)
-	CheckPhotoOwner(Photo) (Photo, error)
+	CheckPhoto(Photo) (Photo, error)
 
 	// Like
 	SetLike(Like) (Like, error)
