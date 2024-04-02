@@ -5,7 +5,26 @@ info:
     Rimani in contatto con i tuoi amici condividendo le foto dei momenti speciali, grazie a WASAPhoto! 
     Potete caricare le vostre foto direttamente dal vostro PC, che saranno visibili a tutti coloro che vi seguono.
   version: "1"
+
+tags:
+  - name: Login
+    description: Operazioni di login
+  - name: User
+    description: Operazioni utente
+  - name: Photo
+    description: Operazioni foto
+  - name: Ban
+    description: Operazioni ban
+  - name: Follow
+    description: Operazioni follow
+  - name: Like  
+    description: Operazioni like
+  - name: Comment
+    description: Operazioni commento
+    
 paths:
+      
+
   /session:
 
 ################################################################
