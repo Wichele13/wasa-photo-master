@@ -205,6 +205,7 @@ paths:
       description: Identifies the user to ban
       required: true
       schema:
+        description: Unique user identifier.
         type: string
         pattern: '^.*?$'
         minLength: 3
@@ -284,6 +285,7 @@ paths:
       description: Identifies the user to follow
       required: true
       schema:
+        description: Unique user identifier.
         type: string
         pattern: '^.*?$'
         minLength: 3
@@ -379,12 +381,14 @@ paths:
         description: Identifies the photo to like
         required: true
         schema:
+          description: Unique photo identifier.
           type: integer
       - name: profileInLike
         in: path
         description: Identifies the user's owner of the photo to like
         required: true
         schema:
+          description: Unique user identifier.
           type: string
           pattern: '^.*?$'
 
@@ -438,6 +442,7 @@ paths:
         description: Identifies the photo to like
         required: true
         schema:
+          description: Unique photo identifier.
           type: integer
 
     # endpoint per ottenere la lista dei like di una foto      
@@ -660,6 +665,8 @@ components:
           type: string
           example: $P1234
           pattern: '^.*?$'
+          minLength: 3
+          maxLength: 10
           readOnly: true
         photoOwner:
           description: Unique user identifier.
@@ -771,6 +778,8 @@ components:
           type: string
           pattern: '^.*?$'
           example: photo.jpg
+          minLength: 3
+          maxLength: 10
           readOnly: true
           
         # la foto
