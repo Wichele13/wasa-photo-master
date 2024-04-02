@@ -583,9 +583,9 @@ components:
   schemas:
 
     # schema per l'utente
-    user:
+    username:
       
-      title: user
+      title: username
       description: This object is the user.
       type: object
 
