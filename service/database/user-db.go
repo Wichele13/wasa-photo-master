@@ -128,16 +128,6 @@ func (db *appdbimpl) GetMyStream(u User) ([]PhotoStream, error) {
 	return ret, nil
 }
 
-func (db *appdbimpl) GetFollowStatus(r uint64, u uint64) (bool, error) {
-	var ret bool
-	if err := db.c.QueryRow(`SELECT EXISTS(SELECT 1 FROM followers WHERE userId= ? AND  followerId= ?)`, r, u).Scan(&ret); err != nil {
-		if err == sql.ErrNoRows {
-			return false, err
-		}
-	}
-	return ret, nil
-}
-
 func (db *appdbimpl) GetBanStatus(r uint64, u uint64) (bool, error) {
 	var ret bool
 	if err := db.c.QueryRow(`SELECT EXISTS(SELECT 1 FROM bans WHERE userId=? AND bannedId=?)`, r, u).Scan(&ret); err != nil {
