@@ -155,7 +155,7 @@ type AppDatabase interface {
 	GetLikesCount(uint64) (int, error)
 
 	// Comment
-	SetComment(Comment) (Comment, error)
+	AddComment(Comment) (Comment, error)
 	RemoveComment(Comment) error
 	GetComments(photoId uint64) ([]Comment, error)
 	GetCommentsCount(uint64) (int, error)
