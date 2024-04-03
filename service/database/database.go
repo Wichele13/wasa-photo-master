@@ -172,16 +172,80 @@ type appdbimpl struct {
 // New returns a new instance of AppDatabase based on the SQLite connection `db`.
 // `db` is required - an error will be returned if `db` is `nil`.
 func New(db *sql.DB) (AppDatabase, error) {
+	// Check if db is nil
 	if db == nil {
 		return nil, errors.New("database is required when building a AppDatabase")
 	}
-
+	// Enable foreign keys
+	_, err := db.Exec("PRAGMA foreign_keys = ON")
+	if err != nil {
+		return nil, err
+	}
 	// Check if table exists. If not, the database is empty, and we need to create the structure
 	var tableName string
-	err := db.QueryRow(`SELECT name FROM sqlite_master WHERE type='table' AND name='example_table';`).Scan(&tableName)
+	err = db.QueryRow(`SELECT name FROM sqlite_master WHERE type='table' AND name='users';`).Scan(&tableName)
 	if errors.Is(err, sql.ErrNoRows) {
-		sqlStmt := `CREATE TABLE example_table (id INTEGER NOT NULL PRIMARY KEY, name TEXT);`
-		_, err = db.Exec(sqlStmt)
+		usersDatabase := `CREATE TABLE users (
+			Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+			Username TEXT NOT NULL UNIQUE
+			);`
+		photosDatabase := `CREATE TABLE photos (
+			Id INTEGER NOT NULL PRIMARY KEY, 
+			userId INTEGER NOT NULL,
+			photo BLOB,
+			date TEXT ,
+			FOREIGN KEY (userId) REFERENCES users(Id)
+			);`
+		likesDatabase := `CREATE TABLE likes (
+			Id INTEGER NOT NULL PRIMARY KEY,
+			userId INTEGER NOT NULL,
+			photoId INTEGER NOT NULL,
+			photoOwner INTEGER NOT NULL,
+			FOREIGN KEY (userId) REFERENCES users(Id),
+			FOREIGN KEY (photoId) REFERENCES photos(Id)
+			);`
+		commentsDatabase := `CREATE TABLE comments (
+			Id INTEGER NOT NULL PRIMARY KEY,
+			userId INTEGER NOT NULL,
+			photoId INTEGER NOT NULL,
+			photoOwner INTEGER NOT NULL,
+			content TEXT NOT NULL,
+			FOREIGN KEY (userId) REFERENCES users(Id),
+			FOREIGN KEY (photoId) REFERENCES photos(Id)
+			);`
+		bansDatabase := `CREATE TABLE bans (
+			banId INTEGER NOT NULL PRIMARY KEY,
+			bannedId INTEGER NOT NULL,
+			userId INTEGER NOT NULL,
+			FOREIGN KEY (userId) REFERENCES users(Id)
+			);`
+		followersDatabase := `CREATE TABLE followers (
+			Id INTEGER NOT NULL PRIMARY KEY,
+			followerId INTEGER NOT NULL,
+			userId INTEGER NOT NULL,
+			FOREIGN KEY (userId) REFERENCES users(Id)
+			);`
+		_, err = db.Exec(usersDatabase)
+		if err != nil {
+			return nil, fmt.Errorf("error creating database structure: %w", err)
+		}
+		_, err = db.Exec(photosDatabase)
+		if err != nil {
+			return nil, fmt.Errorf("error creating database structure: %w", err)
+		}
+		_, err = db.Exec(likesDatabase)
+		if err != nil {
+			return nil, fmt.Errorf("error creating database structure: %w", err)
+		}
+		_, err = db.Exec(commentsDatabase)
+		if err != nil {
+			return nil, fmt.Errorf("error creating database structure: %w", err)
+		}
+		_, err = db.Exec(bansDatabase)
+		if err != nil {
+			return nil, fmt.Errorf("error creating database structure: %w", err)
+		}
+		_, err = db.Exec(followersDatabase)
 		if err != nil {
 			return nil, fmt.Errorf("error creating database structure: %w", err)
 		}
@@ -192,6 +256,7 @@ func New(db *sql.DB) (AppDatabase, error) {
 	}, nil
 }
 
+// Ping checks the connection to the database.
 func (db *appdbimpl) Ping() error {
 	return db.c.Ping()
 }
