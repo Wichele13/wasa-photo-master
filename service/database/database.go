@@ -157,10 +157,10 @@ type AppDatabase interface {
 	// Comment
 	AddComment(Comment) (Comment, error)
 	RemoveComment(Comment) error
-	GetComments(photoId uint64) ([]Comment, error)
-	GetCommentsCount(uint64) (int, error)
-	GetCommentById(Comment) (Comment, error)
 	RemoveComments(uint64, uint64) error
+	GetComments(photoId uint64) ([]Comment, error)
+	GetCommentById(Comment) (Comment, error)
+	GetCommentsCount(uint64) (int, error)
 
 	Ping() error
 }
