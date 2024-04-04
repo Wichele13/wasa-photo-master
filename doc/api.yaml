@@ -919,20 +919,19 @@ components:
                 minLength: 3
                 maxLength: 9999
 
-              likeCount:
+              likeNumber:
                 description: photo likes count.
                 type: integer
                 example: 0
                 minimum: 0
                 maximum: 9999
 
-              commentCount:
+              commentNumber:
                 description: photo comments count.
                 type: integer
                 example: 0
                 minimum: 0
                 maximum: 9999
-
 
               likeStatus:
                 description: photo like status.
@@ -973,7 +972,7 @@ components:
     # schema per il login
     login:
       title: login
-      description: This object is the login.
+      description: Login schema.
       type: object
 
       # le proprietà del login
@@ -983,12 +982,9 @@ components:
           description: Unique username.
           type: string
           pattern: '^.*?$'
-          minLength: 5
+          minLength: 3
           maxLength: 16
-          required:
-            - username
           example: Mario_Rossi_01
-          readOnly: true
 
     # schema per la lista di commenti
     commentsList: 
