@@ -433,16 +433,10 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
    
 
-  /users/{profile}/photos/{id}/likes:
+  /users/{username}/photos/{id}/likes:
     parameters:
-      - $ref: "#/components/parameters/profile"
-      - name: id
-        in: path
-        description: Identifies the photo to like
-        required: true
-        schema:
-          description: Unique photo identifier.
-          type: integer
+      - $ref: "#/components/parameters/username"
+      - $ref : "#/components/parameters/photoID"
 
     # endpoint per ottenere la lista dei like di una foto      
     get:
@@ -469,9 +463,9 @@ paths:
 
 
 
-  /users/{profile}/photos/{id}/comments/{commentsId}:
+  /users/{username}/photos/{id}/comments/{commentsId}:
     parameters:
-      - $ref: "#/components/parameters/profile"
+      - $ref: "#/components/parameters/username"
       - name: id
         in: path
         description: Identifies the photo get or delete
@@ -553,15 +547,86 @@ components:
       scheme: bearer
 
   parameters:
-    profile:
-      name: profile
-      in: path
-      description: Identifies the user
-      required: true
+    username:
       schema:
+          description: user schema.
+          type: string
+          pattern: '^.*?$'
+          example: MikeRossi
+          minLength: 3
+          maxLength: 30
+      name: user
+      in: path
+      required: true
+      description: "username of user."
+
+    photoID:
+      schema:
+        description: photoID schema.
         type: string
         pattern: '^.*?$'
-  
+        example: "#P1234"
+        minLength: 3
+        maxLength: 16
+      name: photoId 
+      in: path
+      required: true
+      description: "**photoID** of a specific photo on a user profile."
+    
+    commentID:
+      schema:
+        description: commentID schema.
+        type: string
+        pattern: '^.*?$'
+        example: "#C1234"
+        minLength: 3
+        maxLength: 16
+      name: commentId
+      in: path
+      required: true
+      description: "commentId of a single comment under a photo."
+
+    likeID:
+      schema:
+        description: likeID schema.
+        type: string
+        pattern: '^.*?$'
+        example: "#L1234"
+        minLength: 3
+        maxLength: 16
+      name: likeId
+      in: path
+      required: true
+      description: "likeId of a single like on a photo."
+
+    followID:
+      schema:
+        description: followID schema.
+        type: string
+        pattern: '^.*?$'
+        example: "#F1234"
+        minLength: 3
+        maxLength: 16
+      name: followId
+      in: path
+      required: true
+      description: "*followId of a single follow on a user."
+
+    banID:
+      schema:
+        description: banID schema.
+        type: string
+        pattern: '^.*?$'
+        example: "#B1234"
+        minLength: 3
+        maxLength: 16
+      name: banId
+      in: path
+      required: true
+      description: "*banId of a single ban on a user."
+
+
+
   responses:
 
     #401
