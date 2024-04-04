@@ -56,7 +56,7 @@ paths:
 ################################################################
 # UTENTI
 
-  /users/{username}/username:
+  /user/{username}/username:
     parameters:
     - $ref: "#/components/parameters/username"
 
@@ -102,7 +102,7 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
   
-  /users/{username}/stream:
+  /user/{username}/stream:
     parameters:
     - $ref: "#/components/parameters/username"
 
@@ -127,7 +127,7 @@ paths:
 
 ################################################################
 #FOTO ACTIONS
-  /users/{username}/photos:
+  /user/{username}/photos:
     parameters:
     - $ref: "#/components/parameters/username"
 
@@ -196,7 +196,7 @@ paths:
 
 ################################################################
 #BAN
-  /users/{username}/banned/{banId}:
+  /user/{username}/banned/{banId}:
     parameters:
     - $ref: "#/components/parameters/username"
     - $ref: "#/components/parameters/banID"
@@ -242,7 +242,7 @@ paths:
        "401": { $ref: "#/components/responses/UnauthorizedError" }
        "500": { $ref: "#/components/responses/InternalServerError" }
 
-  /users/{username}/banned:
+  /user/{username}/banned:
     # endpoint per ottenere la lista degli utenti bannati
     parameters:
     - $ref: "#/components/parameters/username"
@@ -267,7 +267,7 @@ paths:
 
 ################################################################
 #FOLLOWERS
-  /users/{profile}/followers/{profileInFollower}:
+  /user/{profile}/followers/{profileInFollower}:
     parameters:
     - $ref: "#/components/parameters/username"
     - name: profileInFollower
@@ -336,7 +336,7 @@ paths:
                     type: string
                     example: "User not found"
 
-  /users/{username}/followers:
+  /user/{username}/followers:
     parameters:
     - $ref: "#/components/parameters/username"
     # endpoint per ottenere la lista dei followers
@@ -363,7 +363,7 @@ paths:
     
 ################################################################
 #LIKES
-  /users/{username}/photos/{id}/likes/{likeId}:
+  /user/{username}/photos/{id}/likes/{likeId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
@@ -410,7 +410,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
    
 
-  /users/{username}/photos/{id}/likes:
+  /user/{username}/photos/{id}/likes:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
@@ -440,7 +440,7 @@ paths:
 
 
 
-  /users/{username}/photos/{id}/comments/{commentsId}:
+  /user/{username}/photos/{id}/comments/{commentsId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
