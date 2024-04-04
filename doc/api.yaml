@@ -23,8 +23,7 @@ tags:
     description: Operazioni commento
     
 paths:
-      
-
+    
   /session:
 
 ################################################################
@@ -609,7 +608,7 @@ components:
     # schema per l'utente
     username:
       
-      title: username
+      title: User
       description: This object is the user.
       type: object
 
@@ -619,22 +618,17 @@ components:
           description: Unique username.
           type: string
           pattern: '^.*?$'
-          minLength: 5
+          minLength: 3
           maxLength: 16
-          required:
-            - username
           example: Mario_Rossi_01
-          readOnly: true
-
         # id dell'utente
         userId:
           description: Unique user identifier.
           type: string
           pattern: '^.*?$'
           minLength: 3
-          maxLength: 10
-          example: $1234
-          readOnly: true
+          maxLength: 16
+          example: "$1234"
     
   #schema per il like
     like:
@@ -679,8 +673,8 @@ components:
 
     # schema per il profilo utente
     profile:
-      title: profile
-      description: This object is the userName.
+      title: Profile
+      description: This object is the user Profile.
       type: object
 
       # le proprietà del profilo
@@ -688,13 +682,10 @@ components:
         username:
           description: Unique username.
           type: string
-          minLength: 5
+          minLength: 3
           maxLength: 16
           pattern: '^.*?$'
-          required:
-            - username
           example: Mario_Rossi_01
-          readOnly: true
 
         # id dell'utente
         userId:
@@ -704,17 +695,6 @@ components:
           maxLength: 10
           pattern: '^.*?$'
           example: $1234
-          readOnly: true
-        
-        # url della stream dell'utente
-        userstream:
-          description: Unique user stream.
-          type: string
-          pattern: '^.*?$'
-          minLength: 3
-          maxLength: 200
-          example: "http://localhost:8080/session/Mario_Rossi_01/stream"
-          readOnly: true
         
         # numero di followers dell'utente
         followersNumber:
@@ -723,17 +703,15 @@ components:
           minimum: 0
           maximum: 9999
           example: 0
-          readOnly: true
 
         # numero di following dell'utente
         followingNumber:
-          description: user following count
+          description: user following number
           type: integer
           minimum: 0
           maximum: 999999999
           example: 0
-          readOnly: true
-        
+
         # numero di foto dell'utente
         photoNumber:
           description: user photo number.
@@ -741,20 +719,20 @@ components:
           minimum: 0
           maximum: 999999999
           example: 0
-          readOnly: true
         
+        # stato del follow
         followStatus:
           description: Shows if the user is followed
           type: boolean
           example: true
-          readOnly: true
-      
+
+        # stato del ban
         banStatus:
           description: Shows if the user is banned
           type: boolean
           example: true
-          readOnly: true
         
+        # request id
         requestId:
           description: Unique user identifier.
           type: string
@@ -762,6 +740,14 @@ components:
           example: "$1234"
           minLength: 3
           maxLength: 16
+        
+        #checkIfBanned
+        checkIfBanned:
+          description: Shows if the user is banned
+          type: boolean
+          example: true
+        
+        
           
     # schema per la foto
     photo:
