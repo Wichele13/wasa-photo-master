@@ -267,19 +267,10 @@ paths:
 
 ################################################################
 #FOLLOWERS
-  /user/{profile}/followers/{profileInFollower}:
+  /user/{username}/followers/{followId}:
     parameters:
     - $ref: "#/components/parameters/username"
-    - name: profileInFollower
-      in: path
-      description: Identifies the user to follow
-      required: true
-      schema:
-        description: Unique user identifier.
-        type: string
-        pattern: '^.*?$'
-        minLength: 3
-        maxLength: 10
+    - $ref: "#/components/parameters/followID"
     
     # endpoint per seguire un utente
     put:
