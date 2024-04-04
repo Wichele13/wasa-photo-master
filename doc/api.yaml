@@ -571,7 +571,7 @@ components:
       name: photoId 
       in: path
       required: true
-      description: "**photoID** of a specific photo on a user profile."
+      description: "photoId of a single photo."
     
     commentID:
       schema:
