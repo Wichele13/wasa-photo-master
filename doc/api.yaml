@@ -551,6 +551,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+
   parameters:
     profile:
       name: profile
@@ -633,7 +634,7 @@ components:
   #schema per il like
     like:
       title: like
-      description: This object is the like.
+      description: Like schema.
       type: object
 
       # le proprietà del like
@@ -645,15 +646,13 @@ components:
           minLength: 2
           maxLength: 10
           example: $L1234
-          readOnly: true
         userId:
           description: Unique user identifier.
           type: string
           minLength: 3
-          maxLength: 10
+          maxLength: 16
           pattern: '^.*?$'
           example: $1234
-          readOnly: true
         photoId:
           description: Unique photo identifier.
           type: string
@@ -661,7 +660,6 @@ components:
           pattern: '^.*?$'
           minLength: 3
           maxLength: 10
-          readOnly: true
         photoOwner:
           description: Unique user identifier.
           type: string
@@ -669,7 +667,6 @@ components:
           maxLength: 10
           pattern: '^.*?$'
           example: $1234
-          readOnly: true
 
     # schema per il profilo utente
     profile:
@@ -758,23 +755,22 @@ components:
       properties:
 
         # id della foto
-        id:
+        photoid:
           description: Identifies the photo
           type: string
           pattern: '^.*?$'
           example: photo.jpg
           minLength: 3
           maxLength: 10
-          readOnly: true
-          
+
         # la foto
-        photo:
+        photoFile:
           description: The photo to upload
           type: string
           pattern: '^.*?$'
-          minLength: 3
+          minLength: 4
           maxLength: 200
-          format: byte
+          format: binary
         
         # id dell'utente che ha caricato la foto
         userId:
@@ -784,10 +780,9 @@ components:
           minLength: 3
           maxLength: 10
           example: $1234
-          readOnly: true
         
         # stato del like
-        likeSet:
+        likeSetCheck:
           description: Identifies if the user has liked the photo
           type: boolean
           example: true
@@ -803,18 +798,20 @@ components:
           example: "This is a photo"
 
         # numero di like della foto  
-        likeCounter:
+        likeNumber:
           description: The photo like counter
           type: integer
           example: 0
-          readOnly: true
+          minimum: 0
+          maximum: 99999
 
         # numero di commenti della foto
-        comments:
+        commentsNumber:
           description: The number of comments of the photo
           type: integer
+          minimum: 0
+          maximum: 99999
           example: 0
-          readOnly: true
 
         # data di caricamento della foto
         date:
@@ -824,7 +821,6 @@ components:
           minLength: 4
           maxLength: 11
           example: "13-10-2000"
-          readOnly: true
     
     # schema per la stream di foto
     photostream:
@@ -1123,6 +1119,3 @@ components:
           example: "$B1234"
           minLength: 3
           maxLength: 16
-
-
-
