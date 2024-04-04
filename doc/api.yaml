@@ -1098,7 +1098,6 @@ components:
           minLength: 1
           maxLength: 200
           example: Hi, I'm a comment!
-          readOnly: true
 
     # schema per il ban
     ban:
