@@ -56,9 +56,9 @@ paths:
 ################################################################
 # UTENTI
 
-  /users/{profile}/username:
+  /users/{username}/username:
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
 
     # endpoint per la modifica del nome utente
     put:
@@ -102,9 +102,9 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
   
-  /users/{profile}/stream:
+  /users/{username}/stream:
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
 
     # endpoint per ottenere lo stream dell'utente
     get:
@@ -127,9 +127,9 @@ paths:
 
 ################################################################
 #FOTO ACTIONS
-  /users/{profile}/photos:
+  /users/{username}/photos:
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
 
     # endpoint per la creazione di una nuova foto
     post:
@@ -196,19 +196,10 @@ paths:
 
 ################################################################
 #BAN
-  /users/{profile}/banned/{profileInBan}:
+  /users/{username}/banned/{banId}:
     parameters:
-    - $ref: "#/components/parameters/profile"
-    - name: profileInBan
-      in: path
-      description: Identifies the user to ban
-      required: true
-      schema:
-        description: Unique user identifier.
-        type: string
-        pattern: '^.*?$'
-        minLength: 3
-        maxLength: 10
+    - $ref: "#/components/parameters/username"
+    - $ref: "#/components/parameters/banID"
 
     # endpoint per bannare un utente
     put:
