@@ -992,8 +992,8 @@ components:
 
     # schema per la lista di commenti
     commentsList: 
-          title: comments
-          description: This object is the list of comments.
+          title: commentsList
+          description: Comments List schema.
           type: object
           properties:
             
@@ -1026,7 +1026,7 @@ components:
 
             # lista dei commenti
             comments: 
-              description: list of objects (each object is a comment).
+              description: list of objects(comments).
               type: array
               minItems: 0
               maxItems: 99999
@@ -1079,7 +1079,7 @@ components:
                     description: Content of the comment.
                     type: string
                     pattern: '^.*?$'
-                    example: "Hello World!"
+                    example: "I'm a comment!"
                     minLength: 2
                     maxLength: 30
 
