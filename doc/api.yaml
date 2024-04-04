@@ -251,10 +251,10 @@ paths:
        "401": { $ref: "#/components/responses/UnauthorizedError" }
        "500": { $ref: "#/components/responses/InternalServerError" }
 
-  /users/{profile}/banned:
+  /users/{username}/banned:
     # endpoint per ottenere la lista degli utenti bannati
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
     get:
       security:
         - bearerAuth: []
@@ -278,7 +278,7 @@ paths:
 #FOLLOWERS
   /users/{profile}/followers/{profileInFollower}:
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
     - name: profileInFollower
       in: path
       description: Identifies the user to follow
@@ -345,9 +345,9 @@ paths:
                     type: string
                     example: "User not found"
 
-  /users/{profile}/followers:
+  /users/{username}/followers:
     parameters:
-    - $ref: "#/components/parameters/profile"
+    - $ref: "#/components/parameters/username"
     # endpoint per ottenere la lista dei followers
     get:
       security:
@@ -372,25 +372,11 @@ paths:
     
 ################################################################
 #LIKES
-  /users/{profile}/photos/{id}/likes/{profileInLike}:
+  /users/{username}/photos/{id}/likes/{likeId}:
     parameters:
-      - $ref: "#/components/parameters/profile"
-      - name: id
-        in: path
-        description: Identifies the photo to like
-        required: true
-        schema:
-          description: Unique photo identifier.
-          type: integer
-      - name: profileInLike
-        in: path
-        description: Identifies the user's owner of the photo to like
-        required: true
-        schema:
-          description: Unique user identifier.
-          type: string
-          pattern: '^.*?$'
-
+      - $ref: "#/components/parameters/username"
+      - $ref : "#/components/parameters/photoID"
+      - $ref : "#/components/parameters/likeID"
     # endpoint per mettere like ad una foto      
     put:
       security:
@@ -466,18 +452,8 @@ paths:
   /users/{username}/photos/{id}/comments/{commentsId}:
     parameters:
       - $ref: "#/components/parameters/username"
-      - name: id
-        in: path
-        description: Identifies the photo get or delete
-        required: true
-        schema:
-          type: integer
-      - name: commentsId
-        in: path
-        description: Identifies the comment
-        required: true
-        schema:
-          type: integer
+      - $ref : "#/components/parameters/photoID"
+      - $ref : "#/components/parameters/commentID"
     
             
     # endpoint per commentare una foto
