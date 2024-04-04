@@ -747,8 +747,7 @@ components:
           type: boolean
           example: true
         
-        
-          
+
     # schema per la foto
     photo:
       title: photo
@@ -1104,14 +1103,31 @@ components:
     # schema per il ban
     ban:
       title: ban
-      description: This object is a ban.
+      description: Ban schema.
       type: object
 
       # le proprietà del ban
       properties:
-        banned:
-          description: Identifies if the user is banned
+        bannedId:
+          description: user banned identifier.
           type: boolean
           example: true
-          readOnly: true
+        
+        userId:
+          description: Unique user identifier.
+          type: string
+          pattern: '^.*?$'
+          example: "$U1234"
+          minLength: 3
+          maxLength: 16
+        
+        banId:
+          description: Unique ban identifier.
+          type: string
+          pattern: '^.*?$'
+          example: "$B1234"
+          minLength: 3
+          maxLength: 16
+
+
 
