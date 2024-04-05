@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
   title: WASAPhoto
   description: |-
@@ -42,21 +42,21 @@ paths:
         description: User details
         content:
           application/json:
-            schema: { $ref: "#/components/schemas/profile"}
+            schema: { $ref: "#/components/schemas/login"}
         required: true
       responses:
         '201':
-          description: User log-in action successful
+          description: User logged in action
           content:
             application/json:
-              schema: { $ref: "#/components/schemas/profile"}
+              schema: { $ref: "#/components/schemas/user"}
   
 ################################################################
 
 ################################################################
 # UTENTI
 
-  /user/{username}/username:
+  /user/{username}/setUsername:
     parameters:
     - $ref: "#/components/parameters/username"
 
@@ -68,13 +68,12 @@ paths:
       summary: Sets user username
       description: |-
         Sets user username.
-        if username already exists, it edits it.
       operationId: setMyUserName
       requestBody:
         description: Insert here your username
         content:
           application/json:
-            schema: { $ref: "#/components/schemas/profile"}
+            schema: { $ref: "#/components/schemas/user"}
       responses:
         '200':
           description: Username created successfully
@@ -85,23 +84,7 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
     
-    # endpoint per ottener il nome utente
-    get:
-      tags : ["User"]
-      summary: Gets user username
-      description: |-
-        Gets user username.
-      operationId: getMyUserName
-      responses:
-        '200':
-          description: Username retrieved successfully
-          content:
-            application/json:
-              schema: { $ref: "#/components/schemas/profile"}
-        "400": { $ref: "#/components/responses/BadRequestError" }
-        "401": { $ref: "#/components/responses/UnauthorizedError" }
-        "500": { $ref: "#/components/responses/InternalServerError" }
-  
+
   /user/{username}/stream:
     parameters:
     - $ref: "#/components/parameters/username"
@@ -120,7 +103,31 @@ paths:
           description: Stream retrieved successfully
           content:
             application/json:
-              schema: { $ref: "#/components/schemas/profile"}
+              schema: { $ref: "#/components/schemas/stream"}
+        "400": { $ref: "#/components/responses/BadRequestError" }
+        "401": { $ref: "#/components/responses/UnauthorizedError" }
+        "500": { $ref: "#/components/responses/InternalServerError" }
+
+    # endpoint per ottener il nome utente
+  /users/{username}/profile:
+    parameters: 
+      - $ref: "#/components/parameters/username"
+    #* getUserProfile
+    get:
+      security:
+      - bearerAuth : []
+      tags: ["User"]
+      summary: Return profile
+      operationId: getUserProfile
+      description: |-
+        Return an user profile.
+      responses:
+        "200": 
+          description: User profile retrived.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/profile"
         "400": { $ref: "#/components/responses/BadRequestError" }
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
