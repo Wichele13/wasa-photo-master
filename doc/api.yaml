@@ -203,7 +203,7 @@ paths:
 
 ################################################################
 #BAN
-  /user/{username}/banned/{banId}:
+  /users/{username}/ban/{banId}:
     parameters:
     - $ref: "#/components/parameters/username"
     - $ref: "#/components/parameters/banID"
@@ -218,11 +218,6 @@ paths:
       description: |-
         Bans a user.
       operationId: banUser
-      requestBody:
-        description: Insert here the user to ban
-        content:
-          application/json:
-            schema: { $ref: "#/components/schemas/profile"}
       responses:
         "201": 
           description: User banned successfully.
@@ -249,7 +244,7 @@ paths:
        "401": { $ref: "#/components/responses/UnauthorizedError" }
        "500": { $ref: "#/components/responses/InternalServerError" }
 
-  /user/{username}/banned:
+  /users/{username}/ban:
     # endpoint per ottenere la lista degli utenti bannati
     parameters:
     - $ref: "#/components/parameters/username"
@@ -257,9 +252,9 @@ paths:
       security:
         - bearerAuth: []
       tags : ["Ban"]
-      summary: Gets user ban list
+      summary: returns user's bans
       description: |-
-        Gets user ban list.
+        Returns user's bans
       operationId: getBanList
       responses:
         "200": 
@@ -274,7 +269,7 @@ paths:
 
 ################################################################
 #FOLLOWERS
-  /user/{username}/followers/{followId}:
+  /users/{username}/follow/{followId}:
     parameters:
     - $ref: "#/components/parameters/username"
     - $ref: "#/components/parameters/followID"
@@ -289,11 +284,6 @@ paths:
       description: |-
         Follows a user.
       operationId: followUser
-      requestBody:
-        description: Insert here the user to follow
-        content:
-          application/json:
-            schema: { $ref: "#/components/schemas/profile"}
       responses:
         "201": 
           description: User followed successfully.
