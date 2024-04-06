@@ -8,26 +8,26 @@ info:
 
 tags:
   - name: Login
-    description: Operazioni di login
+    description: Operazioni per il login
   - name: User
-    description: Operazioni utente
+    description: Operazioni per l'utente
   - name: Photo
-    description: Operazioni foto
+    description: Operazioni per le foto
   - name: Ban
-    description: Operazioni ban
+    description: Operazioni per il ban
   - name: Follow
-    description: Operazioni follow
+    description: Operazioni per il follow
   - name: Like  
-    description: Operazioni like
+    description: Operazioni per i like
   - name: Comment
-    description: Operazioni commento
+    description: Operazioni per il commento
     
 paths:
     
   /session:
 
 ################################################################
-#LOGIN
+#! LOGIN
 
   # endpoint per la creazione di un nuovo utente
     post:
@@ -54,7 +54,7 @@ paths:
 ################################################################
 
 ################################################################
-# UTENTI
+#! UTENTI
 
   /user/{username}/setUsername:
     parameters:
@@ -103,7 +103,7 @@ paths:
           description: Stream retrieved successfully
           content:
             application/json:
-              schema: { $ref: "#/components/schemas/stream"}
+              schema: { $ref: "#/components/schemas/photostream"}
         "400": { $ref: "#/components/responses/BadRequestError" }
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
@@ -133,7 +133,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
 
 ################################################################
-#FOTO ACTIONS
+#! FOTO ACTIONS
   /user/{username}/photos:
     parameters:
     - $ref: "#/components/parameters/username"
@@ -202,7 +202,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
 
 ################################################################
-#BAN
+#! BAN
   /users/{username}/ban/{banId}:
     parameters:
     - $ref: "#/components/parameters/username"
@@ -268,7 +268,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
 
 ################################################################
-#FOLLOWERS
+#! FOLLOWERS
   /users/{username}/follow/{followId}:
     parameters:
     - $ref: "#/components/parameters/username"
@@ -350,7 +350,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
     
 ################################################################
-#LIKES
+#! LIKES
   /user/{username}/photos/{id}/likes/{likeId}:
     parameters:
       - $ref: "#/components/parameters/username"
@@ -424,7 +424,7 @@ paths:
         "400": { $ref: "#/components/responses/BadRequestError" }
 
 ################################################################
-# COMMENTI 
+#! COMMENTI 
 
 
 
@@ -495,6 +495,7 @@ paths:
 ################################################################
 ################################################################
 
+#! COMPONENTS
 components:
   securitySchemes:
     bearerAuth:
@@ -504,13 +505,13 @@ components:
   parameters:
     username:
       schema:
-          description: user schema.
+          description: username.
           type: string
           pattern: '^.*?$'
           example: MikeRossi
           minLength: 3
           maxLength: 30
-      name: user
+      name: username
       in: path
       required: true
       description: "username of user."
@@ -623,11 +624,11 @@ components:
                 type: string
                 example: "Internal server error"
 
-
+#! SCHEMAS
   schemas:
 
     # schema per l'utente
-    username:
+    user:
       
       title: User
       description: This object is the user.
