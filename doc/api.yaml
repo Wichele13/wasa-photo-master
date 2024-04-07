@@ -392,7 +392,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
    
 
-  /user/{username}/photos/{photoID}/likes:
+  /user/{username}/photos/{photoId}/likes:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
@@ -422,7 +422,7 @@ paths:
 
 
 
-  /user/{username}/photos/{id}/comments/{commentsId}:
+  /user/{username}/photos/{photoId}/comments/{commentsId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
