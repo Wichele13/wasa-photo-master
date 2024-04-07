@@ -351,7 +351,7 @@ paths:
     
 ################################################################
 #! LIKES
-  /users/{username}/photo/{id}/likes/{likeId}:
+  /users/{username}/photo/{photoID}/likes/{likeID}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
@@ -383,9 +383,8 @@ paths:
       tags : ["Like"]
       summary: Removes a like from a photo
       description: |-
-        Unbans a user.
+        Removes a like from a photo.
       operationId: unLikePhoto
-
       responses:
         "204": { description: Like removed successfully. }
         "400": { $ref: "#/components/responses/BadRequestError" }
