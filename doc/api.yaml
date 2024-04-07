@@ -134,7 +134,7 @@ paths:
 
 ################################################################
 #! FOTO ACTIONS
-  /users/{username}/photos/{photoId}:
+  /users/{username}/photo/{photoId}:
     parameters:
     - $ref: "#/components/parameters/username"
     - $ref: "#/components/parameters/photoID"
@@ -190,9 +190,10 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" } 
 
-  /users/{username}/photos:
+  /users/{username}/photo:
     # endpoint per ottenere le foto dell'utente        
-    $ref: "#/components/parameters/username"
+    parameters:
+    - $ref: "#/components/parameters/username"
     get:
       security:
         - bearerAuth: []
