@@ -134,9 +134,10 @@ paths:
 
 ################################################################
 #! FOTO ACTIONS
-  /users/{username}/photos:
+  /users/{username}/photos/{photoId}:
     parameters:
     - $ref: "#/components/parameters/username"
+    - $ref: "#/components/parameters/photoID"
 
     # endpoint per la creazione di una nuova foto
     post:
@@ -189,7 +190,9 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" } 
 
-    # endpoint per ottenere le foto dell'utente                
+  /users/{username}/photos:
+    # endpoint per ottenere le foto dell'utente        
+    $ref: "#/components/parameters/username"
     get:
       security:
         - bearerAuth: []
