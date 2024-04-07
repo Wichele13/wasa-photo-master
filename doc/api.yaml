@@ -321,22 +321,10 @@ paths:
       operationId: unfollowUser
 
       responses:
-        '200':
-          description: User unfollowed successfully
-          content:
-            application/json:
-              schema: { $ref: "#/components/schemas/profile"}
-        '404':
-          description: |
-            User not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: "User not found"
+       "204": { description: Follow deleted successfully. }
+       "400": { $ref: "#/components/responses/BadRequestError" }
+       "401": { $ref: "#/components/responses/UnauthorizedError" }
+       "500": { $ref: "#/components/responses/InternalServerError" }
 
   /users/{username}/follow:
     parameters:
@@ -426,7 +414,7 @@ paths:
           description: Likes retrieved successfully
           content:
             application/json:
-              schema: { $ref: "#/components/schemas/photo"}
+              schema: { $ref: "#/components/schemas/like"}
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
         "400": { $ref: "#/components/responses/BadRequestError" }
