@@ -1014,7 +1014,7 @@ components:
               maxLength: 16
             
             # id della foto a cui è stato caricato il commento
-            photoId: 
+            photoID: 
               description: photo identifier.
               type: string
               pattern: '^.*?$'
