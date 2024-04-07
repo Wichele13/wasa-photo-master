@@ -654,7 +654,7 @@ components:
 
       # le proprietà del like
       properties:
-        likeid:
+        likeID:
           description: Unique like identifier.
           type: string
           pattern: '^.*?$'
@@ -897,7 +897,7 @@ components:
             type: object
 
             properties:
-              Id: 
+              phototID: 
                 description:  Unique photo identifier.
                 type: string
                 pattern: '^.*?$'
