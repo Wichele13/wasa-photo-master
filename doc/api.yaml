@@ -338,7 +338,7 @@ paths:
                     type: string
                     example: "User not found"
 
-  /user/{username}/followers:
+  /users/{username}/followers:
     parameters:
     - $ref: "#/components/parameters/username"
     # endpoint per ottenere la lista dei followers
@@ -456,16 +456,37 @@ paths:
         description: Insert here the photo to comment
         content:
           application/json:
-            schema: { $ref: "#/components/schemas/photo"}
+            schema: { $ref: "#/components/schemas/comment"}
       responses:
         '201':
           description: Photo commented successfully
           content:
             application/json:
-              schema: { $ref: "#/components/schemas/photo"}
+              schema: { $ref: "#/components/schemas/commentsList"}
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
         "400": { $ref: "#/components/responses/BadRequestError" }
+
+    # endpoint per rimuovere un commento ad una foto
+    delete:
+      security:
+        - bearerAuth: []
+      tags : ["Comment"]
+      summary: Removes a comment from a photo
+      description: |-
+        Removes a comment from a photo.
+      operationId: removeComment
+
+      responses:
+        "204": { description: Comment deleted successfully. }
+        "401": { $ref: "#/components/responses/UnauthorizedError" }
+        "500": { $ref: "#/components/responses/InternalServerError" }
+        "400": { $ref: "#/components/responses/BadRequestError" }
+
+  /user/{username}/photos/{photoId}/comment:
+    parameters:
+      - $ref: "#/components/parameters/username"
+      - $ref : "#/components/parameters/photoID"
     # endpoint per ottenere la lista dei commenti di una foto
     get:
       security:
@@ -481,21 +502,6 @@ paths:
           content:
             application/json:
               schema: { $ref: "#/components/schemas/commentsList"}
-        '400': {$ref: "#/components/responses/BadRequestError"}
-        '401': {$ref: "#/components/responses/UnauthorizedError"}
-        '500': {$ref: "#/components/responses/InternalServerError"}
-    # endpoint per rimuovere un commento ad una foto
-    delete:
-      security:
-        - bearerAuth: []
-      tags : ["Comment"]
-      summary: Removes a comment from a photo
-      description: |-
-        Removes a comment from a photo.
-      operationId: removeComment
-
-      responses:
-        "204": { description: Comment deleted successfully. }
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
         "400": { $ref: "#/components/responses/BadRequestError" }
