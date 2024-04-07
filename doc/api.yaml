@@ -422,7 +422,7 @@ paths:
 
 
 
-  /user/{username}/photos/{photoId}/comments/{commentsId}:
+  /user/{username}/photos/{photoId}/comments/{commentId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
