@@ -134,7 +134,7 @@ paths:
 
 ################################################################
 #! FOTO ACTIONS
-  /user/{username}/photos:
+  /users/{username}/photos:
     parameters:
     - $ref: "#/components/parameters/username"
 
@@ -149,10 +149,20 @@ paths:
         Posts a photo.
       operationId: postMyPhoto
       requestBody:
-        description: Insert here your photo
+        description: photo
+        required: true
         content:
-          application/json:
-            schema: { $ref: "#/components/schemas/photo"}
+          image/*:
+            schema:
+              description: Image schema.
+              type: object
+              properties:
+                 file: 
+                  description: file
+                  type: string
+                  format: binary
+                  minLength: 0
+                  maxLength: 9999 
       responses:
         '201':
           description: Photo uploaded successfully
