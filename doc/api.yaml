@@ -338,7 +338,7 @@ paths:
                     type: string
                     example: "User not found"
 
-  /users/{username}/followers:
+  /users/{username}/follow:
     parameters:
     - $ref: "#/components/parameters/username"
     # endpoint per ottenere la lista dei followers
@@ -347,7 +347,7 @@ paths:
         - bearerAuth: []
       tags : ["Follow"]
 
-      summary: Gets user followers
+      summary: Returns follow
       description: |-
         Gets user followers.
       operationId: getFollowers
@@ -406,7 +406,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
    
 
-  /user/{username}/photos/{photoId}/likes:
+  /users/{username}/photos/{photoId}/likes:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
