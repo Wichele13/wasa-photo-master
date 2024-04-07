@@ -770,7 +770,7 @@ components:
       properties:
 
         # id della foto
-        photoid:
+        photoID:
           description: Identifies the photo
           type: string
           pattern: '^.*?$'
