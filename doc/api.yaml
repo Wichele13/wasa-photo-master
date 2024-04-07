@@ -351,7 +351,7 @@ paths:
     
 ################################################################
 #! LIKES
-  /users/{username}/photo/{photoId}/likes/{likeID}:
+  /users/{username}/photo/{photoId}/likes/{likeId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoID"
