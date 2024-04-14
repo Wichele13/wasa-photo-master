@@ -721,7 +721,7 @@ components:
           description: user followers number.
           type: integer
           minimum: 0
-          maximum: 9999
+          maximum: 999999
           example: 0
 
         # numero di following dell'utente
@@ -869,8 +869,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/photo"
-          minimum: 0
-          maximum: 99999
+          #minimum: 0
+          #maximum: 99999
           readOnly: true
   
   # schema per la lista di foto
