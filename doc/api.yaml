@@ -912,7 +912,7 @@ components:
                 type: integer
                 example: 0
                 minimum: 0
-                maximum: 9999
+                maximum: 9999999999
 
               commentNumber:
                 description: photo comments count.
