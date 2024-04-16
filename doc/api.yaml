@@ -504,6 +504,17 @@ components:
       type: http
       scheme: bearer
 
+  
+
+  responses: 
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      description: The request was not compliant with the documentation (eg. missing fields, etc).
+    InternalServerError:
+      description: The server encountered an internal error. Further info in server logs.
+
+
   parameters:
     username:
       schema:
@@ -583,48 +594,6 @@ components:
       required: true
       description: "*banId of a single ban on a user."
 
-
-
-  responses:
-
-    #401
-    UnauthorizedError:
-      description: |
-        Invalid or missing authentication token.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Invalid or missing authentication token"
-    
-    #400
-    BadRequestError:
-      description: |
-        Invalid request body.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Invalid request body"
-    
-    #500
-    InternalServerError:
-      description: |
-        Internal server error.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Internal server error"
 
 #! SCHEMAS
   schemas:
