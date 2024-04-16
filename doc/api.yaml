@@ -869,8 +869,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/photo"
-          #minimum: 0
-          #maximum: 99999
+          minItems: 0
+          maxItems: 99999
           readOnly: true
   
   # schema per la lista di foto
