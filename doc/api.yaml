@@ -148,7 +148,7 @@ paths:
       summary: Posts a photo
       description: |-
         Posts a photo.
-      operationId: postMyPhoto
+      operationId: • uploadPhoto
       requestBody:
         description: photo
         required: true
@@ -183,7 +183,7 @@ paths:
       summary: Deletes a photo
       description: |-
         Deletes a photo.
-      operationId: deleteMyPhoto
+      operationId: deletePhoto
       responses:
         "204": { description: Photo deleted successfully. }
         "400": { $ref: "#/components/responses/BadRequestError" }
@@ -386,7 +386,7 @@ paths:
       summary: Removes a like from a photo
       description: |-
         Removes a like from a photo.
-      operationId: unLikePhoto
+      operationId: unlikePhoto
       responses:
         "204": { description: Like removed successfully. }
         "400": { $ref: "#/components/responses/BadRequestError" }
@@ -463,7 +463,7 @@ paths:
       summary: Removes a comment from a photo
       description: |-
         Removes a comment from a photo.
-      operationId: removeComment
+      operationId: uncommentPhoto
 
       responses:
         "204": { description: Comment deleted successfully. }
