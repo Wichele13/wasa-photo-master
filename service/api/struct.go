@@ -21,17 +21,6 @@ type User struct {
 	Username string `json:"username"`
 }
 
-func (u *User) FromDatabase(user database.User) {
-	u.Id = user.Id
-	u.Username = user.Username
-}
-
-func (u *User) ToDatabase() database.User {
-	return database.User{
-		Id:       u.Id,
-		Username: u.Username,
-	}
-}
 
 type PhotoStream struct {
 	Id           uint64 `json:"id"`
@@ -178,5 +167,17 @@ func (c *Comment) CommentToDatabase() database.Comment {
 		PhotoId:    c.PhotoId,
 		PhotoOwner: c.PhotoOwner,
 		Content:    c.Content,
+	}
+}
+
+func (u *User) FromDatabase(user database.User) {
+	u.Id = user.Id
+	u.Username = user.Username
+}
+
+func (u *User) ToDatabase() database.User {
+	return database.User{
+		Id:       u.Id,
+		Username: u.Username,
 	}
 }
