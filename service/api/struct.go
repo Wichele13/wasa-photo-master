@@ -4,6 +4,7 @@ import (
 	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/database"
 )
 
+//Profile struct
 type Profile struct {
 	RequestId      uint64 `json:"requestId"`
 	Id             uint64 `json:"id"`
@@ -16,12 +17,24 @@ type Profile struct {
 	CheckIfBanned  bool   `json:"checkIfBanned"`
 }
 
+//User struct and methods
 type User struct {
 	Id       uint64 `json:"id"`
 	Username string `json:"username"`
 }
+func (u *User) FromDatabase(user database.User) {
+	u.Id = user.Id
+	u.Username = user.Username
+}
 
+func (u *User) ToDatabase() database.User {
+	return database.User{
+		Id:       u.Id,
+		Username: u.Username,
+	}
+}
 
+//PhotoStream struct and methods
 type PhotoStream struct {
 	Id           uint64 `json:"id"`
 	UserId       uint64 `json:"userId"`
@@ -52,6 +65,7 @@ func (s *PhotoStream) PhotoStreamToDatabase() database.PhotoStream {
 
 }
 
+//Follow struct and methods
 type Follow struct {
 	FollowId   uint64 `json:"followId"`
 	FollowedId uint64 `json:"followedId"`
@@ -72,6 +86,7 @@ func (f *Follow) FollowToDatabase() database.Follow {
 	}
 }
 
+//Ban struct and methods
 type Ban struct {
 	BanId    uint64 `json:"banId"`
 	BannedId uint64 `json:"bannedId"`
@@ -92,6 +107,7 @@ func (b *Ban) BanToDatabase() database.Ban {
 	}
 }
 
+//Photo struct and methods
 type Photo struct {
 	Id            uint64 `json:"id"`
 	UserId        uint64 `json:"userId"`
@@ -121,6 +137,7 @@ func (p *Photo) PhotoToDatabase() database.Photo {
 	}
 }
 
+//Like struct and methods
 type Like struct {
 	LikeId          uint64 `json:"likeId"`
 	UserIdentifier  uint64 `json:"identifier"`
@@ -145,6 +162,7 @@ func (l *Like) LikeToDatabase() database.Like {
 	}
 }
 
+//Comment struct and methods
 type Comment struct {
 	Id         uint64 `json:"id"`
 	UserId     uint64 `json:"userId"`
@@ -170,14 +188,4 @@ func (c *Comment) CommentToDatabase() database.Comment {
 	}
 }
 
-func (u *User) FromDatabase(user database.User) {
-	u.Id = user.Id
-	u.Username = user.Username
-}
 
-func (u *User) ToDatabase() database.User {
-	return database.User{
-		Id:       u.Id,
-		Username: u.Username,
-	}
-}
