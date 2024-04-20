@@ -111,7 +111,8 @@ func (rt *_router) getUserProfile(w http.ResponseWriter, r *http.Request, ps htt
 	_ = json.NewEncoder(w).Encode(profile)
 }
 
-//FUNZIONE CHE RESTITUISCE LO STREAM DELL'UTENTE CHE RICHIEDE
+
+//FUNZIONE CHE RESTITUISCE LO STREAM DELL'UTENTE CHE RICHIED
 func (rt *_router) getMyStream(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var photoList database.Stream
