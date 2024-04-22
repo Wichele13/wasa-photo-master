@@ -11,7 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//FUNZIONE CHE ESEGUE IL BAN
+// FUNZIONE CHE ESEGUE IL BAN
 func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
 	token := getToken(r.Header.Get("Authorization"))
@@ -55,7 +55,7 @@ func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter
 	_ = json.NewEncoder(w).Encode(ban)
 }
 
-//FUNZIONE CHE ESEGUE LO SBAN
+// FUNZIONE CHE ESEGUE LO SBAN
 func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
 	token := getToken(r.Header.Get("Authorization"))
@@ -90,9 +90,9 @@ func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprout
 	w.WriteHeader(http.StatusNoContent)
 }
 
-//FUNZIONE CHE RESTITUISCE I BAN
+// FUNZIONE CHE RESTITUISCE I BAN
 func (rt *_router) getBans(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
-	
+
 	token := getToken(r.Header.Get("Authorization"))
 	var user User
 	var ban Ban
