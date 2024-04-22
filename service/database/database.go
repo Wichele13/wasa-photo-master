@@ -7,12 +7,13 @@ import (
 )
 
 // Errors
-var ErrUserDoesNotExist = errors.New("User does not exist")
-var ErrPhotoDoesNotExist = errors.New("Photo does not exist")
-var ErrBanDoesNotExist = errors.New("Ban does not exist")
-var ErrFollowDoesNotExist = errors.New("Follow does not exist")
-var ErrCommentDoesNotExist = errors.New("Comment does not exist")
-var ErrLikeDoesNotExist = errors.New("Like does not exist")
+var ErrUserDoesNotExist = errors.New("L'utente non esiste")
+var ErrPhotoDoesNotExist = errors.New("La foto non esiste")
+var ErrBanDoesNotExist = errors.New("Il ban non esiste")
+var ErrFollowDoesNotExist = errors.New("Il follow non esiste")
+var ErrCommentDoesNotExist = errors.New("Il commento non esiste")
+var ErrLikeDoesNotExist = errors.New("Il like non esiste
+")
 
 // User is the struct for the user
 type User struct {
