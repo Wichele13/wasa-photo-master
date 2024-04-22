@@ -10,3 +10,40 @@ import (
 	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/database"
 	"github.com/julienschmidt/httprouter"
 )
+
+//FUNZIONE CHE AGGIUNGE IL LIKE
+func (rt *_router) likePhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
+	var like Like
+	var user User
+	username := ps.ByName("username")
+	dbuser, err := rt.db.GetUserId(username)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	user.FromDatabase(dbuser)
+	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	likeid, err := strconv.ParseUint(ps.ByName("likeid"), 10, 64)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	like.LikeId = likeid
+	token := getToken(r.Header.Get("Authorization"))
+	like.UserIdentifier = token
+	like.PhotoIdentifier = photoid
+	like.PhotoOwner = user.Id
+	dblike, err := rt.db.AddLike(like.LikeToDatabase())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	like.LikeFromDatabase(dblike)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	_ = json.NewEncoder(w).Encode(like)
+}
