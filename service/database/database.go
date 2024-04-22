@@ -12,8 +12,7 @@ var ErrPhotoDoesNotExist = errors.New("La foto non esiste")
 var ErrBanDoesNotExist = errors.New("Il ban non esiste")
 var ErrFollowDoesNotExist = errors.New("Il follow non esiste")
 var ErrCommentDoesNotExist = errors.New("Il commento non esiste")
-var ErrLikeDoesNotExist = errors.New("Il like non esiste
-")
+var ErrLikeDoesNotExist = errors.New("Il like non esiste")
 
 // User is the struct for the user
 type User struct {
