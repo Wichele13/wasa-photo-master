@@ -14,7 +14,7 @@ import (
 )
 
 // FUNZIONE CHE CARICA LA FOTO
-func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) { 
+func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var photo Photo
 	token := getToken(r.Header.Get("Authorization"))

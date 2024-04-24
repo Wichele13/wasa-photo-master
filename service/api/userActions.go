@@ -2,10 +2,10 @@ package api
 
 import (
 	"encoding/json"
-	"net/http"
-	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/database"
 	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/api/reqcontext"
+	"git.sapienzaapps.it/fantasticcoffee/fantastic-coffee-decaffeinated/service/database"
 	"github.com/julienschmidt/httprouter"
+	"net/http"
 )
 
 // FUNZIONE CHE ESEGUE IL LOGIN
@@ -27,7 +27,7 @@ func (rt *_router) doLogin(w http.ResponseWriter, r *http.Request, ps httprouter
 	_ = json.NewEncoder(w).Encode(user)
 }
 
-// FUNZIONE CHE SETTA IL NOME DELL'UTENTE 
+// FUNZIONE CHE SETTA IL NOME DELL'UTENTE
 func (rt *_router) setMyUserName(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	username := ps.ByName("username")
@@ -48,7 +48,6 @@ func (rt *_router) setMyUserName(w http.ResponseWriter, r *http.Request, ps http
 	w.WriteHeader(http.StatusCreated)
 	_ = json.NewEncoder(w).Encode(user)
 }
-
 
 // FUNZIONE CHE RESTITUISCE IL PROFILO DELL'UTENTE CHE RICHIEDE
 func (rt *_router) getUserProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
@@ -111,7 +110,6 @@ func (rt *_router) getUserProfile(w http.ResponseWriter, r *http.Request, ps htt
 	_ = json.NewEncoder(w).Encode(profile)
 }
 
-
 // FUNZIONE CHE RESTITUISCE LO STREAM DELL'UTENTE CHE RICHIED
 func (rt *_router) getMyStream(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
@@ -138,5 +136,3 @@ func (rt *_router) getMyStream(w http.ResponseWriter, r *http.Request, ps httpro
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(photoList)
 }
-
-
