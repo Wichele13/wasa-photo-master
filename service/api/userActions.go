@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//FUNZIONE CHE ESEGUE IL LOGIN
+// FUNZIONE CHE ESEGUE IL LOGIN
 func (rt *_router) doLogin(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -27,7 +27,7 @@ func (rt *_router) doLogin(w http.ResponseWriter, r *http.Request, ps httprouter
 	_ = json.NewEncoder(w).Encode(user)
 }
 
-//FUNZIONE CHE SETTA IL NOME DELL'UTENTE 
+// FUNZIONE CHE SETTA IL NOME DELL'UTENTE 
 func (rt *_router) setMyUserName(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	username := ps.ByName("username")
@@ -50,7 +50,7 @@ func (rt *_router) setMyUserName(w http.ResponseWriter, r *http.Request, ps http
 }
 
 
-//FUNZIONE CHE RESTITUISCE IL PROFILO DELL'UTENTE CHE RICHIEDE
+// FUNZIONE CHE RESTITUISCE IL PROFILO DELL'UTENTE CHE RICHIEDE
 func (rt *_router) getUserProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var requestUser User
@@ -112,7 +112,7 @@ func (rt *_router) getUserProfile(w http.ResponseWriter, r *http.Request, ps htt
 }
 
 
-//FUNZIONE CHE RESTITUISCE LO STREAM DELL'UTENTE CHE RICHIED
+// FUNZIONE CHE RESTITUISCE LO STREAM DELL'UTENTE CHE RICHIED
 func (rt *_router) getMyStream(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var photoList database.Stream

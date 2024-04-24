@@ -11,7 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//FUNZIONE CHE ESEGUE IL FOLLOW
+// FUNZIONE CHE ESEGUE IL FOLLOW
 func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var follow Follow
 	var user User
@@ -42,7 +42,7 @@ func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprou
 	_ = json.NewEncoder(w).Encode(follow)
 }
 
-//FUNZIONE CHE ESEGUE L'UNFOLLOW
+// FUNZIONE CHE ESEGUE L'UNFOLLOW
 func (rt *_router) unfollowUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var follow Follow
 	var user User
@@ -74,7 +74,7 @@ func (rt *_router) unfollowUser(w http.ResponseWriter, r *http.Request, ps httpr
 	w.WriteHeader(http.StatusNoContent)
 }
 
-//FUNZIONE CHE RESTITUISCE LA LISTA DEI FOLLOWERS
+// FUNZIONE CHE RESTITUISCE LA LISTA DEI FOLLOWERS
 func (rt *_router) getFollowers(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var follow Follow

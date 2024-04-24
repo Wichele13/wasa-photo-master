@@ -11,7 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//FUNZIONE CHE AGGIUNGE IL LIKE
+// FUNZIONE CHE AGGIUNGE IL LIKE
 func (rt *_router) likePhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var like Like
 	var user User
@@ -48,7 +48,7 @@ func (rt *_router) likePhoto(w http.ResponseWriter, r *http.Request, ps httprout
 	_ = json.NewEncoder(w).Encode(like)
 }
 
-//FUNZIONE CHE RIMUOVE IL LIKE
+// FUNZIONE CHE RIMUOVE IL LIKE
 func (rt *_router) unlikePhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var like Like
@@ -86,7 +86,7 @@ func (rt *_router) unlikePhoto(w http.ResponseWriter, r *http.Request, ps httpro
 	w.WriteHeader(http.StatusNoContent)
 }
 
-//FUNZIONE CHE RESTITUISCE TUTTI I LIKE DI UNA FOTO
+// FUNZIONE CHE RESTITUISCE TUTTI I LIKE DI UNA FOTO
 func (rt *_router) getLikes(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var photo Photo
