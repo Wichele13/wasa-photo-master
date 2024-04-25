@@ -148,7 +148,7 @@ paths:
       summary: Posts a photo
       description: |-
         Posts a photo.
-      operationId: • uploadPhoto
+      operationId: uploadPhoto
       requestBody:
         description: photo
         required: true
