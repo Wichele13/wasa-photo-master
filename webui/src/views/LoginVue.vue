@@ -16,29 +16,60 @@
                 </form>
             </div>
     </div>
-  </template>
-
-
-
+</template>
 
 
 <script>
 import 'webui/src/assets/loginVue.css'
 export default {
-    data() {
+    data: function() {
     return {
       socialName: "WASAPhoto",
       description: "Rimani in contatto con i tuoi amici condividendo le foto dei momenti speciali, grazie a WASAPhoto! Potete caricare le vostre foto direttamente dal vostro PC, che saranno visibili a tutti coloro che vi seguono.",
-      username: "",
       leftColor: '#000000',
       rightColor: '#13cf2f',
-      buttonColor: '#1f1f1f'
+      buttonColor: '#1f1f1f',
+      errormsg: null,
+      username: "",
+      profile: {
+          id: 0,
+          username: "",
+      },
     };
   },
   methods: {
+    async doLogin() {
+            if (length(this.username) <=3){
+                this.errormsg = "Lo username deve essere lungo almeno 3 caratteri";
+            } else {
+                try {
+                    let response = await this.$axios.post("/session", { username: this.username })
+                    this.profile = response.data
+                    localStorage.setItem("token", this.profile.id);
+                    localStorage.setItem("username", this.profile.username);
+                    this.$router.push({ path: '/session' })
+                } catch (e) {
+                    if (e.response && e.response.status === 400) {
+                        this.errormsg = "Qualcosa è andato storto";
+                        this.detailedmsg = null;
+                    } else if (e.response && e.response.status === 500) {
+                        this.errormsg = "Problema server, prova più tardi";
+                        this.detailedmsg = e.toString();
+                    } else {
+                        this.errormsg = e.toString();
+                        this.detailedmsg = null;
+                    }
+                }
+            }
+
+        }
+    },
+    mounted() {
+
+    }
 
 
   }
-};
+
 
 </script>
