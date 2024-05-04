@@ -140,7 +140,7 @@ paths:
     - $ref: "#/components/parameters/photoID"
 
     # endpoint per la creazione di una nuova foto
-    post:
+    put:
       security:
         - bearerAuth: []
       
