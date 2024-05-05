@@ -47,10 +47,10 @@ export default {
         uploadPhoto() {
         // Logica per caricare una nuova foto
         },
-        renameUser() {
+        setMyUserName() {
         // Logica per rinominare l'utente
         },
-        showStream() {
+        getMyStream() {
         // Logica per mostrare lo stream
         },
         deletePhoto() {
