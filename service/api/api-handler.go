@@ -16,12 +16,12 @@ func (rt *_router) Handler() http.Handler {
 	// PhotoActions
 	rt.router.PUT("/users/:username/photo/:photoId", rt.wrap(rt.uploadPhoto))
 	rt.router.DELETE("/users/:username/photo/:photoId", rt.wrap(rt.deletePhoto))
-	rt.router.GET("/users/:username/photo", rt.wrap(rt.getUserPhotos))
+	rt.router.GET("/users/:username/photo", rt.wrap(rt.getPhotos))
 
 	// BanActions
 	rt.router.PUT("/users/:username/ban/:banId", rt.wrap(rt.banUser))
 	rt.router.DELETE("/users/:username/ban/:banId", rt.wrap(rt.unbanUser))
-	rt.router.GET("/users/:username/ban", rt.wrap(rt.getBans))
+	rt.router.GET("/users/:username/ban", rt.wrap(rt.getBanList))
 
 	// FollowActions
 	rt.router.PUT("/users/:username/follow/:followId", rt.wrap(rt.followUser))
