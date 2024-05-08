@@ -11,7 +11,7 @@
                 <form @submit.prevent="login">
                 <div class="form-group">                   
                     <input type="text" placeholder="Inserisci username..." class="form-control" id="username" v-model="username" required>
-                    <button type="submit" :style="{ backgroundColor: buttonColor}" class="btn btn-primary">Login</button>
+                    <button @click="doLogin" type="submit" :style="{ backgroundColor: buttonColor}" class="btn btn-primary">Login</button>
                 </div>
                 </form>
             </div>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async doLogin() {
-            if (length(this.username) <=3){
+            if (this.username.length <=3){
                 this.errormsg = "Lo username deve essere lungo almeno 3 caratteri";
             } else {
                 try {
@@ -48,7 +48,7 @@ export default {
                     this.profile = response.data
                     localStorage.setItem("token", this.profile.id);
                     localStorage.setItem("username", this.profile.username);
-                    this.$router.push({ path: '/session' })
+                    this.$router.push({ path: '/pino' })
                 } catch (e) {
                     if (e.response && e.response.status === 400) {
                         this.errormsg = "Qualcosa è andato storto";
