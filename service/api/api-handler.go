@@ -16,12 +16,12 @@ func (rt *_router) Handler() http.Handler {
 	// PhotoActions
 	rt.router.PUT("/users/:username/photo/:photoId", rt.wrap(rt.uploadPhoto))
 	rt.router.DELETE("/users/:username/photo/:photoId", rt.wrap(rt.deletePhoto))
-	rt.router.GET("/users/:username/photo", rt.wrap(rt.getPhotos))
+	rt.router.GET("/users/:username/photo", rt.wrap(rt.getUserPhotos))
 
 	// BanActions
 	rt.router.PUT("/users/:username/ban/:banId", rt.wrap(rt.banUser))
 	rt.router.DELETE("/users/:username/ban/:banId", rt.wrap(rt.unbanUser))
-	rt.router.GET("/users/:username/ban", rt.wrap(rt.getBanList))
+	rt.router.GET("/users/:username/ban", rt.wrap(rt.getBans))
 
 	// FollowActions
 	rt.router.PUT("/users/:username/follow/:followId", rt.wrap(rt.followUser))
@@ -31,7 +31,7 @@ func (rt *_router) Handler() http.Handler {
 	// LikeActions
 	rt.router.PUT("/users/:username/photo/:photoId/likes/:likeId", rt.wrap(rt.likePhoto))
 	rt.router.DELETE("/users/:username/photo/:photoId/likes/:likeId", rt.wrap(rt.unlikePhoto))
-	rt.router.GET("/users/:username/photo/:photoId/likeS", rt.wrap(rt.getLikes))
+	rt.router.GET("/users/:username/photo/:photoId/likes", rt.wrap(rt.getLikes))
 
 	// CommentActions
 	rt.router.PUT("/users/:username/photos/:photoId/comment/:commentId", rt.wrap(rt.commentPhoto))

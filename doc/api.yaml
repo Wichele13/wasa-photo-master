@@ -137,7 +137,7 @@ paths:
   /users/{username}/photo/{photoId}:
     parameters:
     - $ref: "#/components/parameters/username"
-    - $ref: "#/components/parameters/photoID"
+    - $ref: "#/components/parameters/photoId"
 
     # endpoint per la creazione di una nuova foto
     put:
@@ -203,7 +203,7 @@ paths:
       summary: Gets user photos
       description: |-
         Gets user photos.
-      operationId: getPhotos
+      operationId: getUserPhotos
       responses:
         "200": 
           description: User photos retrived.
@@ -220,7 +220,7 @@ paths:
   /users/{username}/ban/{banId}:
     parameters:
     - $ref: "#/components/parameters/username"
-    - $ref: "#/components/parameters/banID"
+    - $ref: "#/components/parameters/banId"
 
     # endpoint per bannare un utente
     put:
@@ -269,7 +269,7 @@ paths:
       summary: returns user's bans
       description: |-
         Returns user's bans
-      operationId: getBanList
+      operationId: getBans
       responses:
         "200": 
           description: User bans retrived successfully.
@@ -286,7 +286,7 @@ paths:
   /users/{username}/follow/{followId}:
     parameters:
     - $ref: "#/components/parameters/username"
-    - $ref: "#/components/parameters/followID"
+    - $ref: "#/components/parameters/followId"
     
     # endpoint per seguire un utente
     put:
@@ -356,8 +356,8 @@ paths:
   /users/{username}/photo/{photoId}/likes/{likeId}:
     parameters:
       - $ref: "#/components/parameters/username"
-      - $ref : "#/components/parameters/photoID"
-      - $ref : "#/components/parameters/likeID"
+      - $ref : "#/components/parameters/photoId"
+      - $ref : "#/components/parameters/likeId"
     # endpoint per mettere like ad una foto      
     put:
       security:
@@ -397,7 +397,7 @@ paths:
   /users/{username}/photos/{photoId}/likes:
     parameters:
       - $ref: "#/components/parameters/username"
-      - $ref : "#/components/parameters/photoID"
+      - $ref : "#/components/parameters/photoId"
 
     # endpoint per ottenere la lista dei like di una foto      
     get:
@@ -427,8 +427,8 @@ paths:
   /user/{username}/photos/{photoId}/comments/{commentId}:
     parameters:
       - $ref: "#/components/parameters/username"
-      - $ref : "#/components/parameters/photoID"
-      - $ref : "#/components/parameters/commentID"
+      - $ref : "#/components/parameters/photoId"
+      - $ref : "#/components/parameters/commentId"
     
             
     # endpoint per commentare una foto
@@ -474,7 +474,7 @@ paths:
   /user/{username}/photos/{photoId}/comment:
     parameters:
       - $ref: "#/components/parameters/username"
-      - $ref : "#/components/parameters/photoID"
+      - $ref : "#/components/parameters/photoId"
     # endpoint per ottenere la lista dei commenti di una foto
     get:
       security:
@@ -529,9 +529,9 @@ components:
       required: true
       description: "username of user."
 
-    photoID:
+    photoId:
       schema:
-        description: photoID schema.
+        description: photoId schema.
         type: string
         pattern: '^.*?$'
         example: "#P1234"
@@ -542,9 +542,9 @@ components:
       required: true
       description: "photoId of a single photo."
     
-    commentID:
+    commentId:
       schema:
-        description: commentID schema.
+        description: commentId schema.
         type: string
         pattern: '^.*?$'
         example: "#C1234"
@@ -555,9 +555,9 @@ components:
       required: true
       description: "commentId of a single comment under a photo."
 
-    likeID:
+    likeId:
       schema:
-        description: likeID schema.
+        description: likeId schema.
         type: string
         pattern: '^.*?$'
         example: "#L1234"
@@ -568,9 +568,9 @@ components:
       required: true
       description: "likeId of a single like on a photo."
 
-    followID:
+    followId:
       schema:
-        description: followID schema.
+        description: followId schema.
         type: string
         pattern: '^.*?$'
         example: "#F1234"
@@ -581,9 +581,9 @@ components:
       required: true
       description: "*followId of a single follow on a user."
 
-    banID:
+    banId:
       schema:
-        description: banID schema.
+        description: banId schema.
         type: string
         pattern: '^.*?$'
         example: "#B1234"
@@ -631,7 +631,7 @@ components:
 
       # le proprietà del like
       properties:
-        likeID:
+        likeId:
           description: Unique like identifier.
           type: string
           pattern: '^.*?$'
@@ -747,7 +747,7 @@ components:
       properties:
 
         # id della foto
-        photoID:
+        photoId:
           description: Identifies the photo
           type: string
           pattern: '^.*?$'
@@ -934,7 +934,7 @@ components:
       properties:
 
         followId:
-          description: followID 
+          description: followId 
           type: string
           pattern: '^.*?$'
           example: "$U1234"
@@ -991,7 +991,7 @@ components:
               maxLength: 16
             
             # id della foto a cui è stato caricato il commento
-            photoID: 
+            photoId: 
               description: photo identifier.
               type: string
               pattern: '^.*?$'
