@@ -83,7 +83,6 @@ paths:
         "400": { $ref: "#/components/responses/BadRequestError" }
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
-    
 
   /user/{username}/stream:
     parameters:
@@ -107,7 +106,6 @@ paths:
         "400": { $ref: "#/components/responses/BadRequestError" }
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
-
     # endpoint per ottener il nome utente
   /users/{username}/profile:
     parameters: 
@@ -393,7 +391,6 @@ paths:
         "401": { $ref: "#/components/responses/UnauthorizedError" }
         "500": { $ref: "#/components/responses/InternalServerError" }
    
-
   /users/{username}/photo/{photoId}/like:
     parameters:
       - $ref: "#/components/parameters/username"
@@ -421,9 +418,6 @@ paths:
 
 ################################################################
 #! COMMENTI 
-
-
-
   /users/{username}/photo/{photoId}/comment/{commentId}:
     parameters:
       - $ref: "#/components/parameters/username"
