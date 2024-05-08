@@ -46,9 +46,9 @@ export default {
                 try {
                     let response = await this.$axios.post("/session", { username: this.username })
                     this.profile = response.data
-                    localStorage.setItem("token", this.profile.id);
-                    localStorage.setItem("username", this.profile.username);
-                    this.$router.push({ path: '/pino' })
+                    sessionStorage.setItem("token", this.profile.id);
+                    sessionStorage.setItem("username", this.profile.username);
+                    this.$router.push({ path: '/users/'+ sessionStorage.getItem('username')+'/profile' })
                 } catch (e) {
                     if (e.response && e.response.status === 400) {
                         this.errormsg = "Qualcosa è andato storto";
