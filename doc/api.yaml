@@ -353,7 +353,7 @@ paths:
     
 ################################################################
 #! LIKES
-  /users/{username}/photo/{photoId}/likes/{likeId}:
+  /users/{username}/photo/{photoId}/like/{likeId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoId"
@@ -394,7 +394,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
    
 
-  /users/{username}/photos/{photoId}/likes:
+  /users/{username}/photo/{photoId}/like:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoId"
@@ -424,7 +424,7 @@ paths:
 
 
 
-  /user/{username}/photos/{photoId}/comments/{commentId}:
+  /users/{username}/photo/{photoId}/comment/{commentId}:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoId"
@@ -471,7 +471,7 @@ paths:
         "500": { $ref: "#/components/responses/InternalServerError" }
         "400": { $ref: "#/components/responses/BadRequestError" }
 
-  /user/{username}/photos/{photoId}/comment:
+  /users/{username}/photo/{photoId}/comment:
     parameters:
       - $ref: "#/components/parameters/username"
       - $ref : "#/components/parameters/photoId"

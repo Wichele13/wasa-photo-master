@@ -29,14 +29,14 @@ func (rt *_router) Handler() http.Handler {
 	rt.router.GET("/users/:username/follow", rt.wrap(rt.getFollowers))
 
 	// LikeActions
-	rt.router.PUT("/users/:username/photo/:photoId/likes/:likeId", rt.wrap(rt.likePhoto))
-	rt.router.DELETE("/users/:username/photo/:photoId/likes/:likeId", rt.wrap(rt.unlikePhoto))
-	rt.router.GET("/users/:username/photo/:photoId/likes", rt.wrap(rt.getLikes))
+	rt.router.PUT("/users/:username/photo/:photoId/like/:likeId", rt.wrap(rt.likePhoto))
+	rt.router.DELETE("/users/:username/photo/:photoId/like/:likeId", rt.wrap(rt.unlikePhoto))
+	rt.router.GET("/users/:username/photo/:photoId/like", rt.wrap(rt.getLikes))
 
 	// CommentActions
-	rt.router.PUT("/users/:username/photos/:photoId/comment/:commentId", rt.wrap(rt.commentPhoto))
-	rt.router.DELETE("/users/:username/photos/:photoId/comment/:commentId", rt.wrap(rt.uncommentPhoto))
-	rt.router.GET("/users/:username/photos/:photoId/comment", rt.wrap(rt.getComments))
+	rt.router.PUT("/users/:username/photo/:photoId/comment/:commentId", rt.wrap(rt.commentPhoto))
+	rt.router.DELETE("/users/:username/photo/:photoId/comment/:commentId", rt.wrap(rt.uncommentPhoto))
+	rt.router.GET("/users/:username/photo/:photoId/comment", rt.wrap(rt.getComments))
 
 	// Liveness
 	rt.router.GET("/liveness", rt.liveness)
