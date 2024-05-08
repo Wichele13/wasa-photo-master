@@ -91,7 +91,7 @@ func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprout
 }
 
 // FUNZIONE CHE RESTITUISCE I BAN
-func (rt *_router) getBans(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
+func (rt *_router) getBansList(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
 	token := getToken(r.Header.Get("Authorization"))
 	var user User
