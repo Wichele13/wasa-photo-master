@@ -289,7 +289,6 @@ button {
 
 /* Stili per il modale */
 .modal-container {
-  display: none; /* Per default, il modale non è visibile */
   position: fixed; /* Posiziona il modale sopra il contenuto */
   z-index: 1; /* Imposta lo z-index in modo che il modale sia sopra gli altri elementi */
   left: 0;
