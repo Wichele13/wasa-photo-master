@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async doLogin() {
-            if (this.username.length <=3){
+            if (this.username.length <3){
                 this.errormsg = "Lo username deve essere lungo almeno 3 caratteri";
             } else {
                 try {
