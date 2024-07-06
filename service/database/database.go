@@ -122,7 +122,7 @@ type AppDatabase interface {
 	GetMyStream(User) ([]PhotoStream, error)
 
 	// Follow
-	AddFollow(Follow) (Follow, error)
+	SetFollow(Follow) (Follow, error)
 	RemoveFollow(uint64, uint64, uint64) error
 	GetFollowingId(user1 uint64, user2 uint64) (Follow, error)
 	GetFollowers(User, uint64) (Follow, error)
@@ -140,14 +140,14 @@ type AppDatabase interface {
 	CheckIfBanned(uint64, uint64) (bool, error)
 
 	// Photo
-	UploadPhoto(Photo) (Photo, error)
+	SetPhoto(Photo) (Photo, error)
 	RemovePhoto(uint64) error
 	GetPhotos(User, uint64) ([]Photo, error)
 	GetPhotosCount(uint64) (int, error)
 	CheckPhoto(Photo) (Photo, error)
 
 	// Like
-	AddLike(Like) (Like, error)
+	SetLike(Like) (Like, error)
 	RemoveLike(Like) error
 	RemoveLikes(uint64, uint64) error
 	GetLike(uint64, uint64) (Like, error)

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 )
 
-func (db *appdbimpl) AddFollow(f Follow) (Follow, error) {
+func (db *appdbimpl) SetFollow(f Follow) (Follow, error) {
 	_, err := db.c.Exec(`INSERT INTO followers (Id, followerId, userId) VALUES (?, ?, ?)`, f.FollowId, f.FollowedId, f.UserId)
 	if err != nil {
 		return f, err
@@ -66,13 +66,3 @@ func (db *appdbimpl) GetFollowingsCount(id uint64) (int, error) {
 	return count, nil
 }
 
-// GetFollowStatus returns the follow status between two users
-func (db *appdbimpl) GetFollowStatus(user1 uint64, user2 uint64) (bool, error) {
-	var follow Follow
-	if err := db.c.QueryRow(`SELECT Id, followerId, userId FROM followers WHERE followerId=? AND userId = ?`, user1, user2).Scan(&follow.FollowId, &follow.FollowedId, &follow.UserId); err != nil {
-		if err == sql.ErrNoRows {
-			return false, nil
-		}
-	}
-	return true, nil
-}

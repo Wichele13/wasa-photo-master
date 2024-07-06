@@ -14,9 +14,9 @@ import (
 // FUNZIONE CHE ESEGUE IL BAN
 func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
-	token := getToken(r.Header.Get("Authorization"))
 	var ban Ban
 	var user User
+	token := getToken(r.Header.Get("Authorization"))
 	username := ps.ByName("username")
 	dbuser, err := rt.db.GetUserId(username)
 	if err != nil {
@@ -58,9 +58,10 @@ func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter
 // FUNZIONE CHE ESEGUE LO SBAN
 func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
-	token := getToken(r.Header.Get("Authorization"))
+
 	var ban Ban
 	var user User
+	token := getToken(r.Header.Get("Authorization"))
 	id, err := strconv.ParseUint(ps.ByName("banid"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -93,9 +94,9 @@ func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprout
 // FUNZIONE CHE RESTITUISCE I BAN
 func (rt *_router) getBansList(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
-	token := getToken(r.Header.Get("Authorization"))
 	var user User
 	var ban Ban
+	token := getToken(r.Header.Get("Authorization"))
 	user.Username = ps.ByName("username")
 	dbuser, err := rt.db.CheckUserByUsername(user.ToDatabase())
 	if err != nil {

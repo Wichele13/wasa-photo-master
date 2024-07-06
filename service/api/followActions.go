@@ -31,7 +31,7 @@ func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprou
 	follow.FollowedId = user.Id
 	token := getToken(r.Header.Get("Authorization"))
 	follow.UserId = token
-	dbfollow, err := rt.db.AddFollow(follow.FollowToDatabase())
+	dbfollow, err := rt.db.SetFollow(follow.FollowToDatabase())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

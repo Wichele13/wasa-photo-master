@@ -183,12 +183,18 @@ export default {
             }
         },
         async followUser(username) {
+            console.log(sessionStorage.getItem("token"))
             try {
+                
                 let response = await this.$axios.put("/users/" + username + "/follow/" + Math.floor(Math.random() * 10000), {}, {
+                    
                     headers: {
                         Authorization: "Bearer " + sessionStorage.getItem("token")
+                        
                     }
+                    
                 })
+                
                 this.clear = response.data
                 this.refresh()
                 this.successmsg = "Utente" + username + "seguito"

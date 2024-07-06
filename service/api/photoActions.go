@@ -40,7 +40,7 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 	photo.Date = currentTime.Format("2024-03-28 16:47:05")
 	photo.UserId = user.Id
 	photo.Id = id
-	dbphoto, err := rt.db.UploadPhoto(photo.PhotoToDatabase())
+	dbphoto, err := rt.db.SetPhoto(photo.PhotoToDatabase())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

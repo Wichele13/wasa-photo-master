@@ -4,8 +4,8 @@ import (
 	"database/sql"
 )
 
-// UploadPhoto uploads a photo to the database
-func (db *appdbimpl) UploadPhoto(p Photo) (Photo, error) {
+// SetPhoto uploads a photo to the database
+func (db *appdbimpl) SetPhoto(p Photo) (Photo, error) {
 	_, err := db.c.Exec(`INSERT INTO photos (Id, userId, photo, date) VALUES (?, ?, ?, ?)`, p.Id, p.UserId, p.File, p.Date)
 	if err != nil {
 		return p, err

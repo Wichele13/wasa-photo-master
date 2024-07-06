@@ -60,6 +60,10 @@ export default {
     },
     methods: {
 
+        async ViewSession() {
+            this.$router.push({ path: '/session/'})
+        },
+
         async refresh() {
             await this.userProfile();
             await this.userPhotos();
@@ -119,6 +123,7 @@ export default {
                 }
             }
         },
+
         async userPhotos() {
             try {
                 let response = await this.$axios.get("/users/" + this.username + "/photo", {
@@ -143,6 +148,7 @@ export default {
                 }
             }
         },
+        
         async deletePhoto(photoid) {
             try {
                 let response = await this.$axios.delete("/users/" + this.username + "/photo/" + photoid, {
@@ -165,8 +171,8 @@ export default {
             }
         },
         async changeName() {
-            if (this.newUsername.length < 4){
-                this.errormsg = "L'username deve essere lungo almeno 4 caratteri."
+            if (this.newUsername.length < 3){
+                this.errormsg = "L'username deve essere lungo almeno 3 caratteri."
             } else {
                 try {
                     let response = await this.$axios.put("/user/" + this.username + "/setusername", { username: this.newUsername }, {
@@ -314,6 +320,7 @@ export default {
         },
     },
 
+
     mounted() {
         this.userProfile()
         this.userPhotos()
@@ -328,13 +335,8 @@ export default {
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <RouterLink to="/session" class="nav-link">
-                                Home
-                            </RouterLink>
-
-
 						<div class="btn-group me-2" style="flex-direction: column;">
-
+							<button class="btn btn-primary" type="button" @click="ViewSession">Home</button>
 							<input type="file" accept="image/*" class="btn btn-outline-primary"  @change="uploadFile" ref="file">
 							<button class="btn btn-success" type="button" @click="submitFile">Carica</button>
 							<button class="btn btn-danger" type="button" @click="doLogout">Logout</button>
