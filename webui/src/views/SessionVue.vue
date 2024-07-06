@@ -131,8 +131,8 @@ export default {
 		async SearchUser() {
 			if (this.searchUserUsername === this.username) {
 				this.errormsg = "Non puoi cercare te stesso"
-			} else if (this.searchUserUsername.length < 4) {
-				this.errormsg = "Inserisci almeno 4 caratteri per cercare un utente"
+			} else if (this.searchUserUsername.length < 3) {
+				this.errormsg = "Inserisci almeno 3 caratteri per cercare un utente"
 			} else {
 				try {
 					let response = await this.$axios.get("users/" + this.searchUserUsername + "/profile", {

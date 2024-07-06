@@ -73,6 +73,18 @@ export default {
             await this.userProfile()
             await this.userPhotos()
         },
+        async ViewProfile() {
+			this.$router.push({ path: '/users/' + this.username + '/profile' })
+		},
+        async ViewSession() {
+            this.$router.push({ path: '/session/'})
+        },
+		async doLogout() {
+			sessionStorage.removeItem("token")
+			sessionStorage.removeItem("username")
+			this.$router.push({ path: '/' })
+		},
+
         async userProfile() {
             try {
                 let response = await this.$axios.get("/users/" + this.$route.params.username + "/profile", {
@@ -183,7 +195,8 @@ export default {
             }
         },
         async followUser(username) {
-            console.log(sessionStorage.getItem("token"))
+
+
             try {
                 
                 let response = await this.$axios.put("/users/" + username + "/follow/" + Math.floor(Math.random() * 10000), {}, {
@@ -382,11 +395,11 @@ export default {
                 <div class="position-sticky pt-3 sidebar-sticky">
 
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <RouterLink to="/session" class="nav-link">
-                                Home
-                            </RouterLink>
-                        </li>
+                        <button class="btn btn-primary" type="button" @click="ViewSession">Home</button>
+                        <button class="btn btn-primary" type="button" @click="ViewProfile">Profilo</button>
+                        <button class="btn btn-danger" type="button" @click="doLogout">Logout</button>
+
+
                     </ul>
                 </div>
             </nav>

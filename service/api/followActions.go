@@ -13,6 +13,7 @@ import (
 
 // FUNZIONE CHE ESEGUE IL FOLLOW
 func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
+
 	var follow Follow
 	var user User
 	username := ps.ByName("username")
@@ -22,6 +23,7 @@ func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprou
 		return
 	}
 	user.FromDatabase(dbuser)
+
 	id, err := strconv.ParseUint(ps.ByName("followid"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
