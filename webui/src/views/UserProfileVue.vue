@@ -176,6 +176,8 @@ export default {
         async changeName() {
             if (this.newUsername.length < 3){
                 this.errormsg = "L'username deve essere lungo almeno 3 caratteri."
+            } else if (this.newUsername === this.username) {
+                this.errormsg = "Scegli uno username diverso da quello attuale."
             } else {
                 try {
                     let response = await this.$axios.put("/user/" + this.username + "/setUsername", { username: this.newUsername }, {
@@ -193,12 +195,8 @@ export default {
                     if (e.response && e.response.status === 400) {
                         this.errormsg = "Errore nella richiesta, ricontrolla i dati inseriti e riprova";
                         this.detailedmsg = null;
-                    } else if (e.response && e.response.status === 404) {
-                        this.errormsg = "Username non disponibile, scegline un altro.";
-                        this.detailedmsg = null;
-                    } 
-                    else if (e.response && e.response.status === 500) {
-                        this.errormsg = "Potrebbe esserci un problema con il server, riprova più tardi.";
+                    }else if (e.response && e.response.status === 500) {
+                        this.errormsg = "Potrebbe esserci un problema con il server, o il nome utente non disponibile.";
                         this.detailedmsg = e.toString();
                     } else {
                         this.errormsg = e.toString();

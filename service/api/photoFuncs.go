@@ -37,7 +37,7 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 		return
 	}
 	currentTime := time.Now()
-	photo.Date = currentTime.Format("2024-03-28 16:47:05")
+	photo.Date = currentTime.Format("2024-07-09 12:51:41")
 	photo.UserId = user.Id
 	photo.Id = id
 	dbphoto, err := rt.db.SetPhoto(photo.PhotoToDatabase())
@@ -50,7 +50,6 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 	w.WriteHeader(http.StatusCreated)
 	_ = json.NewEncoder(w).Encode(photo)
 }
-
 
 // FUNZIONE CHE RIMUOVE LA FOTO
 func (rt *_router) deletePhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
