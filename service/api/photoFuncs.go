@@ -37,7 +37,7 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 		return
 	}
 	currentTime := time.Now()
-	photo.Date = currentTime.Format("2024-07-09 12:51:41")
+	photo.Date = currentTime.Format("2006-01-02 15:04:05")
 	photo.UserId = user.Id
 	photo.Id = id
 	dbphoto, err := rt.db.SetPhoto(photo.PhotoToDatabase())
