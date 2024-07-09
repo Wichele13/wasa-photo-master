@@ -26,7 +26,7 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 		return
 	}
 	user.FromDatabase(dbuser)
-	id, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	id, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -56,7 +56,7 @@ func (rt *_router) uploadPhoto(w http.ResponseWriter, r *http.Request, ps httpro
 func (rt *_router) deletePhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	token := getToken(r.Header.Get("Authorization"))
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

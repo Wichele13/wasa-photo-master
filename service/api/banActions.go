@@ -24,7 +24,7 @@ func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter
 		return
 	}
 	user.FromDatabase(dbuser)
-	id, err := strconv.ParseUint(ps.ByName("banid"), 10, 64)
+	id, err := strconv.ParseUint(ps.ByName("banId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -62,7 +62,7 @@ func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprout
 	var ban Ban
 	var user User
 	token := getToken(r.Header.Get("Authorization"))
-	id, err := strconv.ParseUint(ps.ByName("banid"), 10, 64)
+	id, err := strconv.ParseUint(ps.ByName("banId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

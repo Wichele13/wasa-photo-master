@@ -22,12 +22,12 @@ func (rt *_router) likePhoto(w http.ResponseWriter, r *http.Request, ps httprout
 		return
 	}
 	user.FromDatabase(dbuser)
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	likeid, err := strconv.ParseUint(ps.ByName("likeid"), 10, 64)
+	likeid, err := strconv.ParseUint(ps.ByName("likeId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -59,12 +59,12 @@ func (rt *_router) unlikePhoto(w http.ResponseWriter, r *http.Request, ps httpro
 		return
 	}
 	user.FromDatabase(dbuser)
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	likeid, err := strconv.ParseUint(ps.ByName("likeid"), 10, 64)
+	likeid, err := strconv.ParseUint(ps.ByName("likeId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -106,7 +106,7 @@ func (rt *_router) getLikes(w http.ResponseWriter, r *http.Request, ps httproute
 		return
 	}
 	user.FromDatabase(dbuser)
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

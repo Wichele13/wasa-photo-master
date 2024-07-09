@@ -24,7 +24,7 @@ func (rt *_router) followUser(w http.ResponseWriter, r *http.Request, ps httprou
 	}
 	user.FromDatabase(dbuser)
 
-	id, err := strconv.ParseUint(ps.ByName("followid"), 10, 64)
+	id, err := strconv.ParseUint(ps.ByName("followId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -20,7 +20,7 @@ func (rt *_router) commentPhoto(w http.ResponseWriter, r *http.Request, ps httpr
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -32,7 +32,7 @@ func (rt *_router) commentPhoto(w http.ResponseWriter, r *http.Request, ps httpr
 		return
 	}
 	user.FromDatabase(dbuser)
-	commentid, err := strconv.ParseUint(ps.ByName("commentid"), 10, 64)
+	commentid, err := strconv.ParseUint(ps.ByName("commentId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -62,7 +62,7 @@ func (rt *_router) uncommentPhoto(w http.ResponseWriter, r *http.Request, ps htt
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	commentid, err := strconv.ParseUint(ps.ByName("commentid"), 10, 64)
+	commentid, err := strconv.ParseUint(ps.ByName("commentId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -105,7 +105,7 @@ func (rt *_router) getComments(w http.ResponseWriter, r *http.Request, ps httpro
 		return
 	}
 	requestUser.FromDatabase(dbrequestuser)
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
