@@ -88,6 +88,8 @@ export default {
 					})
 					this.profile = response.data
 					this.successmsg = "Foto caricata"
+					this.refresh()
+
 				} catch (e) {
 					if (e.response && e.response.status === 400) {
 						this.errormsg = "Errore nel caricamento della foto, riprova";
