@@ -68,6 +68,9 @@ export default {
             await this.userProfile();
             await this.userPhotos();
         },
+        async uploadFile() {
+			this.images = this.$refs.file.files[0]
+		},
 
         async doLogout() {
 			sessionStorage.removeItem("token")
@@ -175,7 +178,7 @@ export default {
                 this.errormsg = "L'username deve essere lungo almeno 3 caratteri."
             } else {
                 try {
-                    let response = await this.$axios.put("/user/" + this.username + "/setusername", { username: this.newUsername }, {
+                    let response = await this.$axios.put("/user/" + this.username + "/setUsername", { username: this.newUsername }, {
                         headers: {
                             Authorization: "Bearer " + sessionStorage.getItem("token")
                         }
