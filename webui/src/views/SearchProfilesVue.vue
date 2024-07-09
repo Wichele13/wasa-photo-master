@@ -393,16 +393,19 @@ export default {
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
                 <div class="position-sticky pt-3 sidebar-sticky">
-
-                    <ul class="nav flex-column">
-                        <button class="btn btn-primary" type="button" @click="ViewSession">Home</button>
-                        <button class="btn btn-primary" type="button" @click="ViewProfile">Profilo</button>
-                        <button class="btn btn-danger" type="button" @click="doLogout">Logout</button>
-
-
-                    </ul>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                      <button class="btn btn-primary w-100" type="button" @click="ViewSession">Home</button>
+                    </li>
+                    <li class="nav-item mb-2">
+                      <button class="btn btn-primary w-100" type="button" @click="ViewProfile">Profilo</button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="btn btn-danger w-100" type="button" @click="doLogout">Logout</button>
+                    </li>
+                  </ul>
                 </div>
-            </nav>
+              </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" v-if="profile.checkIfBanned">
                     <div class="alert alert-danger" role="alert">

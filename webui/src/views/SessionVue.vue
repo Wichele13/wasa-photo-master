@@ -292,18 +292,22 @@ export default {
 		<div class="row">
 			<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
 				<div class="position-sticky pt-3 sidebar-sticky">
-					<ul class="nav flex-column">
-
-						<div class="btn-group me-2" style="flex-direction: column;">
-
-							<button class="btn btn-primary" type="button" @click="ViewProfile">Profilo</button>
-							<input type="file" accept="image/*" class="btn btn-outline-primary"  @change="uploadFile" ref="file">
-							<button class="btn btn-success" type="button" @click="submitFile">Carica</button>
-							<button class="btn btn-danger" type="button" @click="doLogout">Logout</button>
-						</div>
-					</ul>
+				  <ul class="nav flex-column">
+					<li class="nav-item mb-2">
+					  <button class="btn btn-primary w-100" type="button" @click="ViewProfile">Profilo</button>
+					</li>
+					<li class="nav-item mb-2">
+					  <input type="file" accept="image/*" class="btn btn-outline-primary w-100" @change="uploadFile" ref="file">
+					</li>
+					<li class="nav-item mb-2">
+					  <button class="btn btn-success w-100" type="button" @click="submitFile">Carica</button>
+					</li>
+					<li class="nav-item">
+					  <button class="btn btn-danger w-100" type="button" @click="doLogout">Logout</button>
+					</li>
+				  </ul>
 				</div>
-			</nav>
+			  </nav>
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Bentornato, {{ this.username }}</h1>
