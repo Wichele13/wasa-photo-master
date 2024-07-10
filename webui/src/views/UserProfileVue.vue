@@ -10,6 +10,7 @@ export default {
             username: sessionStorage.getItem('username'),
             token: sessionStorage.getItem('token'),
             newUsername: "",
+            images: null,
             profile: {
                 requestId: 0,
                 id: 0,
@@ -76,8 +77,7 @@ export default {
 			sessionStorage.removeItem("username")
 			this.$router.push({ path: '/' })
 		},
-
-        async submitFile() {
+		async submitFile() {
 			if (this.images === null) {
 				this.errormsg = "Ricorda di selezionare prima una foto"
 			} else {
@@ -89,7 +89,7 @@ export default {
 					})
 					this.profile = response.data
 					this.successmsg = "Foto caricata"
-                    this.refresh()
+					this.refresh()
 
 				} catch (e) {
 					if (e.response && e.response.status === 400) {
