@@ -210,7 +210,7 @@ export default {
                 
                 this.clear = response.data
                 this.refresh()
-                this.successmsg = "Utente " + username + " seguito"
+                this.successmsg = "Hai" + " seguito " + username
             } catch (e) {
                 if (e.response && e.response.status === 400) {
                     this.errormsg = "Problema nel seguire l'utente, riprova più tardi";
@@ -232,6 +232,7 @@ export default {
                     }
                 })
                 this.follow = response.data
+                this.successmsg = "Hai" + " tolto il segui a " + username
             } catch (e) {
                 if (e.response && e.response.status === 400) {
                     this.errormsg = "Problema nel non seguire più l'utente, riprova più tardi";

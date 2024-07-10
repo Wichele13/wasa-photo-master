@@ -89,6 +89,7 @@ export default {
 					this.profile = response.data
 					this.successmsg = "Foto caricata"
 					this.refresh()
+					window.location.reload();
 
 				} catch (e) {
 					if (e.response && e.response.status === 400) {
