@@ -1,10 +1,9 @@
 <script>
 import ModaleCommenti from "../components/ModaleCommenti.vue";
-import MessaggioSuccesso from '../components/MessaggioSuccesso.vue';
 import MessaggioErrore from '../components/MessaggioErrore.vue';
 
 export default {
-    components: { ModaleCommenti, MessaggioErrore, MessaggioSuccesso},
+    components: { ModaleCommenti, MessaggioErrore},
     data: function () {
         return {
             errormsg: null,
@@ -208,32 +207,33 @@ export default {
             }
 
         },
-        async sendComment(username, photoid,comment) {
-            if (comment === "") {
-                this.errormsg = "Emtpy comment field."
-            } else {
-                try {
-                    let response = await this.$axios.put("/users/" + username + "/photo/" + photoid + "/comment/" + Math.floor(Math.random() * 10000), { content: comment }, {
-                        headers: {
-                            Authorization: "Bearer " + sessionStorage.getItem("token")
-                        }
-                    })
-                    this.clear = response.data
-                    this.refresh()
-                } catch (e) {
-                    if (e.response && e.response.status === 400) {
-                        this.errormsg = "Errore nella richiesta, ricontrolla i dati inseriti e riprova";
-                        this.detailedmsg = null;
-                    } else if (e.response && e.response.status === 500) {
-                        this.errormsg = "Potrebbe esserci un problema con il server, riprova più tardi.";
-                        this.detailedmsg = e.toString();
-                    } else {
-                        this.errormsg = e.toString();
-                        this.detailedmsg = null;
-                    }
-                }
-            }
-        },
+        async sendComment(username, photoid, comment) {
+			if (comment.trim().length < 1) {
+				this.errormsg = "Scrivi qualcosa prima di inviare il commento"
+			} else {
+				try {
+					let response = await this.$axios.put("/users/" + username + "/photo/" + photoid + "/comment/" + Math.floor(Math.random() * 10000), { content: comment }, {
+						headers: {
+							Authorization: "Bearer " + sessionStorage.getItem("token")
+						}
+					})
+					this.clear = response.data
+					this.refresh()
+                    window.location.reload();
+				} catch (e) {
+					if (e.response && e.response.status === 400) {
+						this.errormsg = "Errore nell'invio del commento, riprova";
+						this.detailedmsg = null;
+					} else if (e.response && e.response.status === 500) {
+						this.errormsg = "Problemi con il server nell'invio del commento, riprova più tardi";
+						this.detailedmsg = e.toString();
+					} else {
+						this.errormsg = e.toString();
+						this.detailedmsg = null;
+					}
+				}
+			}
+		},
         async openLog(username, photoid) {
             try {
                 let response = await this.$axios.get("/users/" + username + "/photo/" + photoid + "/comment", {

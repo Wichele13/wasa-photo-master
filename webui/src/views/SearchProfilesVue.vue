@@ -210,7 +210,7 @@ export default {
                 
                 this.clear = response.data
                 this.refresh()
-                this.successmsg = "Utente" + username + "seguito"
+                this.successmsg = "Utente " + username + " seguito"
             } catch (e) {
                 if (e.response && e.response.status === 400) {
                     this.errormsg = "Problema nel seguire l'utente, riprova più tardi";
@@ -267,32 +267,34 @@ export default {
             }
 
         },
-        async sendComment(username, photoid, comment) {
-            if (comment === "") {
-                this.errormsg = "Aggiungi almeno un carattere al commento!"
-            } else {
-                try {
-                    let response = await this.$axios.put("/users/" + username + "/photo/" + photoid + "/comment/" + Math.floor(Math.random() * 10000), { content: comment }, {
-                        headers: {
-                            Authorization: "Bearer " + sessionStorage.getItem("token")
-                        }
-                    })
-                    this.clear = response.data
-                    this.refresh()
-                } catch (e) {
-                    if (e.response && e.response.status === 400) {
-                        this.errormsg = "";
-                        this.detailedmsg = null;
-                    } else if (e.response && e.response.status === 500) {
-                        this.errormsg = "Problema con il server, riprova più tardi";
-                        this.detailedmsg = e.toString();
-                    } else {
-                        this.errormsg = e.toString();
-                        this.detailedmsg = null;
-                    }
-                }
-            }
-        },
+		async sendComment(username, photoid, comment) {
+			if (comment.trim().length < 1) {
+				this.errormsg = "Scrivi qualcosa prima di inviare il commento"
+			} else {
+				try {
+					let response = await this.$axios.put("/users/" + username + "/photo/" + photoid + "/comment/" + Math.floor(Math.random() * 10000), { content: comment }, {
+						headers: {
+							Authorization: "Bearer " + sessionStorage.getItem("token")
+						}
+					})
+					this.clear = response.data
+					this.refresh()
+                    window.location.reload();
+
+				} catch (e) {
+					if (e.response && e.response.status === 400) {
+						this.errormsg = "Errore nell'invio del commento, riprova";
+						this.detailedmsg = null;
+					} else if (e.response && e.response.status === 500) {
+						this.errormsg = "Problemi con il server nell'invio del commento, riprova più tardi";
+						this.detailedmsg = e.toString();
+					} else {
+						this.errormsg = e.toString();
+						this.detailedmsg = null;
+					}
+				}
+			}
+		},
         async openLog(username, photoid) {
             try {
                 let response = await this.$axios.get("/users/" + username + "/photo/" + photoid + "/comment", {
@@ -435,7 +437,7 @@ export default {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" v-if="!profile.checkIfBanned">
                                 <button type="button" v-if="!profile.followStatus" class="btn btn-outline-primary" @click="followUser(profile.username)">Segui</button>
                                 <button type="button" v-if="profile.followStatus" class="btn btn-primary" @click="unfollowUser(profile.username)">Non seguire più</button>
                             </div>

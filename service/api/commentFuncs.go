@@ -57,7 +57,7 @@ func (rt *_router) commentPhoto(w http.ResponseWriter, r *http.Request, ps httpr
 func (rt *_router) uncommentPhoto(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 	var user User
 	var comment Comment
-	photoid, err := strconv.ParseUint(ps.ByName("photoid"), 10, 64)
+	photoid, err := strconv.ParseUint(ps.ByName("photoId"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

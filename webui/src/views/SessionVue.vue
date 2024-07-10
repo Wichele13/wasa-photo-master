@@ -160,8 +160,8 @@ export default {
 		},
 
 		async sendComment(username, photoid, comment) {
-			if (comment === "") {
-				this.errormsg = "Scrivi qualcosa prima di inviare il commento!"
+			if (comment.trim().length < 1) {
+				this.errormsg = "Scrivi qualcosa prima di inviare il commento"
 			} else {
 				try {
 					let response = await this.$axios.put("/users/" + username + "/photo/" + photoid + "/comment/" + Math.floor(Math.random() * 10000), { content: comment }, {
@@ -171,6 +171,8 @@ export default {
 					})
 					this.clear = response.data
 					this.refresh()
+					window.location.reload();
+
 				} catch (e) {
 					if (e.response && e.response.status === 400) {
 						this.errormsg = "Errore nell'invio del commento, riprova";

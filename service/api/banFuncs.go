@@ -58,7 +58,6 @@ func (rt *_router) banUser(w http.ResponseWriter, r *http.Request, ps httprouter
 // FUNZIONE CHE ESEGUE LO SBAN
 func (rt *_router) unbanUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params, ctx reqcontext.RequestContext) {
 
-
 	var ban Ban
 	var user User
 	token := getToken(r.Header.Get("Authorization"))
